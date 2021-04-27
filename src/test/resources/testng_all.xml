@@ -1,0 +1,13 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Calculator tests">
+    <test name="All test">
+        <classes>
+            <class name="com.marizueva.laboratory.hw1.calculatort_tests.CheckValueIsNegativeOrPositive" />
+            <class name="com.marizueva.laboratory.hw1.calculatort_tests.AddTests" />
+            <class name="com.marizueva.laboratory.hw1.calculatort_tests.SubtractionTests" />
+            <class name="com.marizueva.laboratory.hw1.calculatort_tests.MultiplyTests" />
+            <class name="com.marizueva.laboratory.hw1.calculatort_tests.DivideTests" />
+        </classes>
+    </test>
+</suite>
