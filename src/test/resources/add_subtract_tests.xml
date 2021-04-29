@@ -9,8 +9,8 @@
 <!--            </run>-->
 <!--        </groups>-->
         <classes>
-            <class name="com.marizueva.laboratory.hw1.calculatort_tests.SubtractionTests"/>
-            <class name="com.marizueva.laboratory.hw1.calculatort_tests.AddTests"/>
+            <class name="com.marizueva.laboratory.hw1.calculatorttests.SubtractionTests"/>
+            <class name="com.marizueva.laboratory.hw1.calculatorttests.AddTests"/>
         </classes>
     </test>
 

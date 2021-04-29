@@ -3,8 +3,8 @@
 <suite name="Calculator tests">
     <test name="Divide/multiply tests">
         <classes>
-            <class name="com.marizueva.laboratory.hw1.calculatort_tests.DivideTests"/>
-            <class name="com.marizueva.laboratory.hw1.calculatort_tests.MultiplyTests"/>
+            <class name="com.marizueva.laboratory.hw1.calculatorttests.DivideTests"/>
+            <class name="com.marizueva.laboratory.hw1.calculatorttests.MultiplyTests"/>
         </classes>
     </test>
 </suite>

@@ -3,7 +3,7 @@
 <suite name="Calculator tests">
     <test name="All test">
         <packages>
-            <package name="com.marizueva.laboratory.hw1.calculatort_tests"/>
+            <package name="com.marizueva.laboratory.hw1.calculatorttests"/>
         </packages>
     </test>
 </suite>

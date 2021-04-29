@@ -11,12 +11,14 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
         <suiteXmlFiles>${project.build.testOutputDirectory}/testng.xml</suiteXmlFiles>
-        <suiteXmlFilesDefaultAddSubtract>${project.build.testOutputDirectory}/add_subtract_tests.xml</suiteXmlFilesDefaultAddSubtract>
-        <suiteXmlFilesMultiplyDivide>${project.build.testOutputDirectory}/divide_multiply_tests.xml</suiteXmlFilesMultiplyDivide>
-        <suiteXmlFilesAllTest>${project.build.testOutputDirectory}/testng_all.xml</suiteXmlFilesAllTest>
+        <test.config.path>${project.build.testOutputDirectory}</test.config.path>
+<!--        <suiteXmlFilesDefaultAddSubtract>${project.build.testOutputDirectory}/add_subtract_tests.xml</suiteXmlFilesDefaultAddSubtract>-->
+<!--        <suiteXmlFilesMultiplyDivide>${project.build.testOutputDirectory}/divide_multiply_tests.xml</suiteXmlFilesMultiplyDivide>-->
+<!--        <suiteXmlFilesAllTest>${project.build.testOutputDirectory}/testng_all.xml</suiteXmlFilesAllTest>-->
     </properties>
 
     <dependencies>
@@ -33,8 +35,8 @@
             </exclusions>
         </dependency>
         <dependency>
-            <groupId>com.epam</groupId>
-            <artifactId>calculator</artifactId>
+            <groupId>com.epam.tat.module4</groupId>
+            <artifactId>Calculator</artifactId>
             <version>1.0</version>
             <scope>system</scope>
             <systemPath>${project.basedir}/src/main/resources/calculator-1.0.jar</systemPath>
@@ -49,6 +51,36 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.1.2</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.puppycrawl.tools</groupId>
+                        <artifactId>checkstyle</artifactId>
+                        <version>8.41.1</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <configLocation>
+                        <!--  pay attention to use exact url for checkstyle plugin ruleset  -->
+                        https://raw.githubusercontent.com/DmitryKhodakovsky/epam-test-auto-spring-2021/master/codestyle_checks.xml
+                    </configLocation>
+                    <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                    <violationSeverity>warning</violationSeverity>
+                    <consoleOutput>true</consoleOutput>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>checkstyle</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -71,27 +103,6 @@
                     </argLine>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>3.1.2</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>com.puppycrawl.tools</groupId>
-                        <artifactId>checkstyle</artifactId>
-                        <version>8.41.1</version>
-                    </dependency>
-                </dependencies>
-                <executions>
-                    <execution>
-                        <id>checkstyle</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
 
@@ -102,22 +113,20 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <testXml>${suiteXmlFilesDefaultAddSubtract}</testXml>
+<!--                <testXml>${suiteXmlFilesDefaultAddSubtract}</testXml>-->
+                <testXml>${test.config.path}/add_subtract_tests.xml</testXml>
             </properties>
         </profile>
         <profile>
             <id>divide_multiply</id>
             <properties>
-                <testXml>${suiteXmlFilesMultiplyDivide}</testXml>
+                <testXml>${test.config.path}/divide_multiply_tests.xml</testXml>
             </properties>
         </profile>
         <profile>
             <id>all_tests</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
             <properties>
-                <testXml>${suiteXmlFilesAllTest}</testXml>
+                <testXml>${test.config.path}/testng_all.xml</testXml>
             </properties>
         </profile>
     </profiles>

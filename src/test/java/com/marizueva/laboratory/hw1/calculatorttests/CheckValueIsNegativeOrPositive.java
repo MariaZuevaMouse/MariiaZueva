@@ -1,9 +1,11 @@
-package com.marizueva.laboratory.hw1.calculatort_tests;
+package com.marizueva.laboratory.hw1.calculatorttests;
 
-import com.epam.tat.module4.Calculator;
-import com.marizueva.laboratory.hw1.calculatort_tests.base_test.BaseTest;
+import com.marizueva.laboratory.hw1.calculatorttests.basetest.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.hamcrest.CoreMatchers;
+
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class CheckValueIsNegativeOrPositive extends BaseTest {
 
@@ -11,7 +13,7 @@ public class CheckValueIsNegativeOrPositive extends BaseTest {
     public void checkIsNegativeFalse() {
         boolean negative = calculator.isNegative(-0);
 
-        Assert.assertFalse(negative);
+        assertThat(negative, CoreMatchers.is(false));
     }
 
     @Test
@@ -19,19 +21,21 @@ public class CheckValueIsNegativeOrPositive extends BaseTest {
         boolean negative = calculator.isNegative(-1);
 
         Assert.assertTrue(negative);
+        assertThat(negative, CoreMatchers.is(true));
     }
 
     @Test
     public void checkIsPositiveFalse() {
         boolean negative = calculator.isPositive(-1);
 
-        Assert.assertFalse(negative);
+        assertThat(negative, CoreMatchers.is(false));
     }
 
     @Test
-    public void checkIsNPositiveTrue() {
+    public void checkIsNotPositiveTrue() {
         boolean negative = calculator.isPositive(1);
 
         Assert.assertTrue(negative);
+        assertThat(negative, CoreMatchers.is(true));
     }
 }

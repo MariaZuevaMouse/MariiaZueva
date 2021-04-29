@@ -3,11 +3,11 @@
 <suite name="Calculator tests">
     <test name="All test">
         <classes>
-            <class name="com.marizueva.laboratory.hw1.calculatort_tests.CheckValueIsNegativeOrPositive" />
-            <class name="com.marizueva.laboratory.hw1.calculatort_tests.AddTests" />
-            <class name="com.marizueva.laboratory.hw1.calculatort_tests.SubtractionTests" />
-            <class name="com.marizueva.laboratory.hw1.calculatort_tests.MultiplyTests" />
-            <class name="com.marizueva.laboratory.hw1.calculatort_tests.DivideTests" />
+            <class name="com.marizueva.laboratory.hw1.calculatorttests.CheckValueIsNegativeOrPositive" />
+            <class name="com.marizueva.laboratory.hw1.calculatorttests.AddTests" />
+            <class name="com.marizueva.laboratory.hw1.calculatorttests.SubtractionTests" />
+            <class name="com.marizueva.laboratory.hw1.calculatorttests.MultiplyTests" />
+            <class name="com.marizueva.laboratory.hw1.calculatorttests.DivideTests" />
         </classes>
     </test>
 </suite>
