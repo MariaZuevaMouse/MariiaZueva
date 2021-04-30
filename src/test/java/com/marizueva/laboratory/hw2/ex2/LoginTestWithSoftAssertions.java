@@ -6,10 +6,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class LoginTestWithSoftAssertions {
@@ -74,13 +76,14 @@ public class LoginTestWithSoftAssertions {
         softAssert.assertTrue(subMenuFromHeaderDatesItem.isDisplayed());
         WebElement subMenuFromHeaderSearchItem = driver.findElement(By.xpath("//header//ul/li/a[@class='dropdown-toggle']/following-sibling::ul[@class='dropdown-menu']/li/a[text()='Search']"));
         softAssert.assertTrue(subMenuFromHeaderSearchItem.isDisplayed());
-        WebElement subMenuFromHeaderComplexTableItem = driver.findElement(By.xpath("//header//ul/li/a[@class='dropdown-toggle']/following-sibling::ul[@class='dropdown-menu']/li/a[text()='Complex Table']"));
+//        WebElement subMenuFromHeaderComplexTableItem = driver.findElement(By.xpath("//header//ul/li/a[@class='dropdown-toggle']/following-sibling::ul[@class='dropdown-menu']/li/a[text()='Complex Table']"));
+        WebElement subMenuFromHeaderComplexTableItem = driver.findElement(By.xpath("//header//ul/li/a[@class='dropdown-toggle']/following-sibling::ul[@class='dropdown-menu']/li/a[@href='complex-table.html']"));
         softAssert.assertTrue(subMenuFromHeaderComplexTableItem.isDisplayed());
-        WebElement subMenuFromHeaderUserTableItem = driver.findElement(By.xpath("//header//ul/li/a[@class='dropdown-toggle']/following-sibling::ul[@class='dropdown-menu']/li/a[text()='User Table']"));
+        WebElement subMenuFromHeaderUserTableItem = driver.findElement(By.xpath("//header//ul/li/a[@class='dropdown-toggle']/following-sibling::ul[@class='dropdown-menu']/li/a[@href='user-table.html']"));
         softAssert.assertTrue(subMenuFromHeaderUserTableItem.isDisplayed());
-        WebElement subMenuFromHeaderTableWithPagesItem = driver.findElement(By.xpath("//header//ul/li/a[@class='dropdown-toggle']/following-sibling::ul[@class='dropdown-menu']/li/a[text()='Table with pages']"));
+        WebElement subMenuFromHeaderTableWithPagesItem = driver.findElement(By.xpath("//header//ul/li/a[@class='dropdown-toggle']/following-sibling::ul[@class='dropdown-menu']/li/a[@href='table-pages.html']"));
         softAssert.assertTrue(subMenuFromHeaderTableWithPagesItem.isDisplayed());
-        WebElement subMenuFromHeaderDifferentElementsItem = driver.findElement(By.xpath("//header//ul/li/a[@class='dropdown-toggle']/following-sibling::ul[@class='dropdown-menu']/li/a[text()='Different elements']"));
+        WebElement subMenuFromHeaderDifferentElementsItem = driver.findElement(By.xpath("//header//ul/li/a[@class='dropdown-toggle']/following-sibling::ul[@class='dropdown-menu']/li/a[@href='different-elements.html']"));
         softAssert.assertTrue(subMenuFromHeaderDifferentElementsItem.isDisplayed());
 
 //        Click on Service subcategory in the left section and check that drop down contains options
@@ -88,34 +91,113 @@ public class LoginTestWithSoftAssertions {
         WebElement leftServiceMenu = driver.findElement(By.cssSelector("ul.sidebar-menu.left >li[index='3']"));
         leftServiceMenu.click();
 
-        WebElement subMenuFromLeftSupportItem = driver.findElement(By.xpath("//div[@name='navigation-sidebar']//span[text()='Support']"));
+        WebElement subMenuFromLeftSupportItem = driver.findElement(
+                By.xpath("//div[@name='navigation-sidebar']//span[text()='Support']"));
         softAssert.assertTrue(subMenuFromLeftSupportItem.isDisplayed());
-        WebElement subMenuFromLeftDatesItem = driver.findElement(By.xpath("//div[@name='navigation-sidebar']//span[text()='Dates']"));
+        WebElement subMenuFromLeftDatesItem = driver.findElement(
+                By.xpath("//div[@name='navigation-sidebar']//span[text()='Dates']"));
         softAssert.assertTrue(subMenuFromLeftDatesItem.isDisplayed());
-        WebElement subMenuFromLeftSearchItem = driver.findElement(By.xpath("//div[@name='navigation-sidebar']//span[text()='Search']"));
+        WebElement subMenuFromLeftSearchItem = driver.findElement(
+                By.xpath("//div[@name='navigation-sidebar']//span[text()='Search']"));
         softAssert.assertTrue(subMenuFromLeftSearchItem.isDisplayed());
-        WebElement subMenuFromLeftComplexTableItem = driver.findElement(By.xpath("//div[@name='navigation-sidebar']//span[text()='Complex Table']"));
+        WebElement subMenuFromLeftComplexTableItem = driver.findElement(
+                By.xpath("//div[@name='navigation-sidebar']//a[@href='complex-table.html']"));
         softAssert.assertTrue(subMenuFromLeftComplexTableItem.isDisplayed());
-        WebElement subMenuFromLeftUserTableItem = driver.findElement(By.xpath("//div[@name='navigation-sidebar']//span[text()='User Table']"));
+        WebElement subMenuFromLeftUserTableItem = driver.findElement(
+                By.xpath("//div[@name='navigation-sidebar']//a[@href='user-table.html']"));
         softAssert.assertTrue(subMenuFromLeftUserTableItem.isDisplayed());
-        WebElement subMenuFromLeftTableWithPagesItem = driver.findElement(By.xpath("//div[@name='navigation-sidebar']//span[text()='Table with pages']"));
+        WebElement subMenuFromLeftTableWithPagesItem = driver.findElement(
+                By.xpath("//div[@name='navigation-sidebar']"+
+                        "//a[@href='table-pages.html']"));
         softAssert.assertTrue(subMenuFromLeftTableWithPagesItem.isDisplayed());
-        WebElement subMenuFromLeftDifferentElementsItem = driver.findElement(By.xpath("//div[@name='navigation-sidebar']//span[text()='Different elements']"));
+        WebElement subMenuFromLeftDifferentElementsItem = driver.findElement(
+                By.xpath("//div[@name='navigation-sidebar']"+
+                        "//a[@href='different-elements.html']"));
         softAssert.assertTrue(subMenuFromLeftDifferentElementsItem.isDisplayed());
 
 //        Open through the header menu Service -> Different Elements Page
+        headerItemService.click();
         subMenuFromHeaderDifferentElementsItem.click();
 
 //        Check interface on Different elements page, it contains all needed
 //        elements	4 checkboxes, 4 radios, 1 dropdown, 2 buttons
 
+        List<WebElement> checkBoxes = driver.findElements(
+                By.cssSelector("input[type='checkbox'"));
+        softAssert.assertEquals(checkBoxes.size(), 4);
+
+        List<WebElement> radioButtons = driver.findElements(
+                By.cssSelector("input[type='radio'"));
+        softAssert.assertEquals(radioButtons.size(), 4);
+
+        List<WebElement> dropdownMenu = driver.findElements(
+                By.cssSelector("div.colors"));
+        softAssert.assertEquals(dropdownMenu.size(), 1);
 
 //        Assert that there is Right Section
+        WebElement rightPanel = driver.findElement(
+                By.cssSelector(".uui-side-bar.right-fix-panel"));
+        softAssert.assertTrue(rightPanel.isDisplayed());
 
 //        Assert that there is Left Section
-
+        WebElement leftPanel = driver.findElement(By.id("mCSB_1_container"));
+        softAssert.assertTrue(leftPanel.isDisplayed());
 
 //        Select checkboxes	Water, Wind	Elements are checked
+        WebElement waterCheckbox = driver
+                .findElement(By.xpath("//label[@class='label-checkbox'][1]"));
+        waterCheckbox.click();
+        WebElement windCheckbox = driver
+                .findElement(By.xpath("//label[@class='label-checkbox'][3]"));
+        windCheckbox.click();
+
+//        12	Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox.
+//        Log rows are displayed, checkbox name and its status is corresponding to selected
+        WebElement waterLogTrue = driver.findElement(By.xpath("//*[contains(text(),substring('01:14:22  Water: condition changed to true',11, 16))]"));
+        softAssert.assertTrue(waterLogTrue.isDisplayed());
+        softAssert.assertEquals(waterLogTrue.getTagName(), "li");
+
+        WebElement windLogTrue = driver.findElement(By.xpath("//*[contains(text(),substring('009:38:12  Wind: condition changed to true',11, 15))]"));
+        softAssert.assertTrue(windLogTrue.isDisplayed());
+        softAssert.assertEquals(windLogTrue.getTagName(), "li");
+//        13	Select radio	Selen
+        WebElement radioSelen = driver.findElement(By.xpath("//div[@class='checkbox-row']/label[@class='label-radio'][4]"));
+        radioSelen.click();
+
+//        14	Assert that for radiobutton there is a log row and value is corresponded to the status of radiobutton.
+//        Log row is displayed, radiobutton name and its status is corresponding to selected
+//        WebElement selenLog = driver.findElement(By.xpath("//*[contains(text(), 'Selen')] "));
+        WebElement selenLog = driver.findElement(By.xpath("//*[contains(text(), substring('10:40:57 metal: value changed to  Selen',23,40))] "));   //'Selen')
+        softAssert.assertTrue(selenLog.isDisplayed());
+        softAssert.assertEquals(selenLog.getText().substring(22), "changed to Selen");
+
+//        15	Select in dropdown	Yellow
+        WebElement openColorDropdown = driver.findElement(By.cssSelector("div.colors>.uui-form-element"));
+        openColorDropdown.click();
+        WebElement dropdownYellow = driver.findElement(By.xpath("//div[@class='colors']/select/option[text()='Yellow']"));
+        dropdownYellow.click();
+
+
+//        16	Assert that for dropdown there is a log row and value is corresponded to the selected value.
+//        Log row is displayed, dropdown name and selected value is corresponding to selected
+        WebElement dropdownYellowLog = driver.findElement(By.xpath("//*[contains(text(),substring('11:18:10 Colors: value changed to Yellow',18, 40))]"));
+        softAssert.assertTrue(dropdownYellowLog.isDisplayed());
+        softAssert.assertEquals(dropdownYellowLog.getText().substring(17),"value changed to Yellow");
+
+//        17	Unselect and assert checkboxes	Water, Wind	Elements are unchecked
+        waterCheckbox.click();
+        windCheckbox.click();
+
+
+//        18	Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox.
+//        Log rows are displayed, checkbox name and its status is corresponding to selected
+        WebElement waterLogFalse = driver.findElement(By.xpath("//*[contains(text(),substring('11:23:22  Water: condition changed to false',11, 43))]"));
+        softAssert.assertTrue(waterLogFalse.isDisplayed());
+        softAssert.assertEquals(waterLogFalse.getText().substring(9),"Water: condition changed to false");
+
+        WebElement windLogFalse = driver.findElement(By.xpath("//*[contains(text(),substring('11:23:20  Wind: condition changed to false',11, 42))]"));
+        softAssert.assertTrue(windLogFalse.isDisplayed());
+        softAssert.assertEquals(windLogFalse.getText().substring(9), "Wind: condition changed to false");
 
     }
 }

@@ -4,6 +4,7 @@
     <test name="All test">
         <packages>
             <package name="com.marizueva.laboratory.hw1.calculatorttests"/>
+            <package name="com.marizueva.laboratory"/>
         </packages>
     </test>
 </suite>
