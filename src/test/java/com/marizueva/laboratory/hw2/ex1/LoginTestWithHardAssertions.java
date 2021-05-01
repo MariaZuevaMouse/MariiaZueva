@@ -112,7 +112,7 @@ public class LoginTestWithHardAssertions {
             "To be flexible and\ncustomizable",
             "To be multiplatform",
             "Already have good base\n(about 20 internal and\n"
-                        + "some external projects),\nwish to get more..."};
+                        + "some external projects),\nwish to get more\u2026"};
         for (int i = 0; i < iconExpectedText.length; i++) {
 
             Assert.assertEquals(iconTextsWebElement.get(i).getText(), iconExpectedText[i]);
@@ -125,7 +125,7 @@ public class LoginTestWithHardAssertions {
                 .xpath("//div[@class='main-content']/h3[@class='main-title text-center']"));
         WebElement mainContentText = driver.findElement(By.xpath("//div[@class='main-content']/p"));
 
-        Assert.assertEquals(mainContentHeader.getText(), "EPAM FRAMEWORK WISHES...");
+        Assert.assertEquals(mainContentHeader.getText(), "EPAM FRAMEWORK WISHES\u2026");
         Assert.assertEquals(mainContentText.getText().substring(0, 11), "LOREM IPSUM");
 
         //Assert that there is the iframe in the center of page
