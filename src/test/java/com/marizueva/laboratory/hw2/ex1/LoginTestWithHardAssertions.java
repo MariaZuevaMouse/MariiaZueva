@@ -1,6 +1,8 @@
 package com.marizueva.laboratory.hw2.ex1;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.apache.commons.codec.DecoderException;
+import org.apache.commons.codec.binary.Hex;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -19,6 +21,7 @@ public class LoginTestWithHardAssertions {
     private  final String baseUrl = "https://jdi-testing.github.io/jdi-light/index.html";
     private final String login = "Roman";
     private final String password = "Jdi1234";
+    private final String ellipsisHex = "E280A6";
 
     @BeforeClass
     public void beforeClass() {
@@ -34,7 +37,7 @@ public class LoginTestWithHardAssertions {
     }
 
     @Test
-    public void testLoginPage() {
+    public void testLoginPage() throws DecoderException {
         //Open site by URL  https://jdi-testing.github.io/jdi-light/index.html
         driver.navigate().to(baseUrl);
 
@@ -112,7 +115,7 @@ public class LoginTestWithHardAssertions {
             "To be flexible and\ncustomizable",
             "To be multiplatform",
             "Already have good base\n(about 20 internal and\n"
-                        + "some external projects),\nwish to get more\u2026"};
+                        + "some external projects),\nwish to get more U+2026"};
         for (int i = 0; i < iconExpectedText.length; i++) {
 
             Assert.assertEquals(iconTextsWebElement.get(i).getText(), iconExpectedText[i]);
@@ -125,7 +128,7 @@ public class LoginTestWithHardAssertions {
                 .xpath("//div[@class='main-content']/h3[@class='main-title text-center']"));
         WebElement mainContentText = driver.findElement(By.xpath("//div[@class='main-content']/p"));
 
-        Assert.assertEquals(mainContentHeader.getText(), "EPAM FRAMEWORK WISHES\u2026");
+        Assert.assertEquals(mainContentHeader.getText().substring(0, 21), "EPAM FRAMEWORK WISHES");
         Assert.assertEquals(mainContentText.getText().substring(0, 11), "LOREM IPSUM");
 
         //Assert that there is the iframe in the center of page

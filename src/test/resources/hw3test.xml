@@ -1,7 +1,7 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Calculator tests">
-    <test name="All test">
+    <test name="hw3 test">
         <classes>
             <class name="com.marizueva.laboratory.hw3.fluentpageobject.tests.SiteTestWithHardAssertions" />
             <class name="com.marizueva.laboratory.hw3.fluentpageobject.tests.SiteTestWithSoftAssertions" />

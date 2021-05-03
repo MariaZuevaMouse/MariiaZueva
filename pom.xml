@@ -105,6 +105,12 @@
                 <testXml>${test.config.path}/hw2test.xml</testXml>
             </properties>
         </profile>
+        <profile>
+            <id>hw3</id>
+            <properties>
+                <testXml>${test.config.path}/hw3test.xml</testXml>
+            </properties>
+        </profile>
     </profiles>
 
 
