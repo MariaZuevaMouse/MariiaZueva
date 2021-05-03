@@ -1,4 +1,4 @@
-package com.marizueva.laboratory.hw3.fluentpageobject.pages;
+package com.marizueva.laboratory.hw3.voidpageobject.pages;
 
 import org.openqa.selenium.NotFoundException;
 import org.openqa.selenium.WebDriver;
@@ -68,7 +68,7 @@ public class ServiceDifferentElementPage extends CommonPageElements {
         super(driver);
     }
 
-    public ServiceDifferentElementPage checkElementItemCount(
+    public void checkElementItemCount(
             ElementType elementType, int qty, SoftAssert softAssert) {
         switch (elementType) {
             case CHECKBOXES:
@@ -83,48 +83,43 @@ public class ServiceDifferentElementPage extends CommonPageElements {
             default: throw new NotFoundException("no such element");
         }
 
-        return this;
     }
 
     public WebElement getTheRightSection() {
         return rightPanel;
     }
 
-    public ServiceDifferentElementPage clickWaterCheckbox() {
+    public void clickWaterCheckbox() {
         waterCheckbox.click();
-        return this;
     }
 
     public WebElement getWaterLogInTrue() {
         return waterLogTrue;
     }
 
-    public ServiceDifferentElementPage clickWindCheckbox() {
+    public void clickWindCheckbox() {
         windCheckbox.click();
-        return this;
     }
 
     public WebElement getWindLogInTrue() {
         return windLogTrue;
     }
 
-    public ServiceDifferentElementPage chooseRadioSelen() {
+    public void chooseRadioSelen() {
         radioSelen.click();
-        return this;
     }
 
     public WebElement getRadioSelenLog() {
         return selenLog;
     }
 
-    public ServiceDifferentElementPage openColorDropdown() {
+    public void openColorDropdown() {
         openColorDropdown.click();
-        return this;
+
     }
 
-    public ServiceDifferentElementPage clickYellowInDropdown() {
+    public void clickYellowInDropdown() {
         dropdownYellow.click();
-        return this;
     }
 
     public WebElement getDropdownYellowLog() {

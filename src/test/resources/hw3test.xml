@@ -5,6 +5,8 @@
         <classes>
             <class name="com.marizueva.laboratory.hw3.fluentpageobject.tests.SiteTestWithHardAssertions" />
             <class name="com.marizueva.laboratory.hw3.fluentpageobject.tests.SiteTestWithSoftAssertions" />
+            <class name="com.marizueva.laboratory.hw3.voidpageobject.tests.SiteTestWithHardAssertions" />
+            <class name="com.marizueva.laboratory.hw3.voidpageobject.tests.SiteTestWithSoftAssertions" />
         </classes>
     </test>
 </suite>

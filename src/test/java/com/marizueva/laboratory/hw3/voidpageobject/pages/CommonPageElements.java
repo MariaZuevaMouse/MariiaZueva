@@ -1,4 +1,4 @@
-package com.marizueva.laboratory.hw3.fluentpageobject.pages;
+package com.marizueva.laboratory.hw3.voidpageobject.pages;
 
 import org.openqa.selenium.NotFoundException;
 import org.openqa.selenium.WebDriver;
@@ -122,6 +122,27 @@ public class CommonPageElements extends BasePage {
 
     }
 
+    public String getHeaderItem(HeaderItems headerItem) {
+
+        switch (headerItem) {
+            case HOME:
+                return headerItemHome.getText();
+
+            case CONTACT_FORM:
+                return headerItemContact.getText();
+
+            case SERVICE:
+                return headerItemService.getText();
+
+            case METAL_AND_COLORS:
+                return headerItemMetalAndColor.getText();
+
+            default:
+                throw new NotFoundException("There is no such tab" + headerItem);
+
+        }
+    }
+
     public WebElement getLeftSection() {
         return leftSection;
     }
@@ -131,9 +152,9 @@ public class CommonPageElements extends BasePage {
     }
 
 
-    public CommonPageElements clickServiceItemFromHeader() {
+    public void clickServiceItemFromHeader() {
         headerItemService.click();
-        return this;
+
     }
 
     public WebElement getSubMenuServiceItemFromHeader(ServicesSubCategories subCategories) {
@@ -182,9 +203,9 @@ public class CommonPageElements extends BasePage {
         }
     }
 
-    public CommonPageElements clickServiceItemFromLeftSection() {
+    public void clickServiceItemFromLeftSection() {
         leftServiceMenu.click();
-        return this;
+
     }
 
     public ServiceDifferentElementPage goToDifferentElementPageFromHeader() {

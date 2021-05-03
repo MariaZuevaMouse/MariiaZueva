@@ -6,7 +6,6 @@ import com.marizueva.laboratory.hw3.fluentpageobject.pages.ServicesSubCategories
 import org.testng.annotations.DataProvider;
 
 public class DataProviders {
-    //    static Properties    testDataProps = TestDataProperties.getTestDataProps();
 
     @DataProvider(name = "headerItems")
     public static Object[][] headerItems() {
@@ -22,6 +21,15 @@ public class DataProviders {
             {HeaderItems.METAL_AND_COLORS}};
     }
 
+    @DataProvider(name = "headerItemsFromEnum")
+    public static Object[][] headerItemsFromEnum2() {
+        return new Object[][]{
+                {HeaderItems.HOME},
+                {HeaderItems.CONTACT_FORM},
+                {HeaderItems.SERVICE},
+                {HeaderItems.METAL_AND_COLORS}};
+    }
+
     @DataProvider(name = "benefitIconsTextIndex")
     public static Object[][] benefitIconsTextIndex() {
         return new Object[][]{{1}, {2}, {3}, {4}};
@@ -30,6 +38,19 @@ public class DataProviders {
     @DataProvider(name = "servicesSubCategories")
     public static Object[][] servicesSubCategories() {
 
+        return new Object[][] {
+                {ServicesSubCategories.SUPPORT},
+                {ServicesSubCategories.DATES},
+                {ServicesSubCategories.COMPLEX_TABLE},
+                {ServicesSubCategories.SIMPLE_TABLE},
+                {ServicesSubCategories.TABLE_WITH_PAGES},
+                {ServicesSubCategories.DIFFERENT_ELEMENT}
+        };
+    }
+
+
+    @DataProvider(parallel = true, name = "servicesSubCategoriesData")
+    public static Object[][] servicesSubCategoriesData() {
         return new Object[][] {
                 {ServicesSubCategories.SUPPORT},
                 {ServicesSubCategories.DATES},
