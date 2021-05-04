@@ -124,7 +124,7 @@
         <profile>
             <id>hw2</id>
             <properties>
-                <testXml>${test.config.path}/hw2test.xml</testXml>
+                <suiteXmlFiles>${test.config.path}/hw2test.xml</suiteXmlFiles>
             </properties>
         </profile>
     </profiles>
