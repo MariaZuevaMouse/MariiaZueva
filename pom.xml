@@ -114,19 +114,19 @@
             </activation>
             <properties>
 <!--                <testXml>${suiteXmlFilesDefaultAddSubtract}</testXml>-->
-                <testXml>${test.config.path}/add_subtract_tests.xml</testXml>
+                <suiteXmlFiles>${test.config.path}/add_subtract_tests.xml</suiteXmlFiles>
             </properties>
         </profile>
         <profile>
             <id>divide_multiply</id>
             <properties>
-                <testXml>${test.config.path}/divide_multiply_tests.xml</testXml>
+                <suiteXmlFiles>${test.config.path}/divide_multiply_tests.xml</suiteXmlFiles>
             </properties>
         </profile>
         <profile>
             <id>all_tests</id>
             <properties>
-                <testXml>${test.config.path}/testng_all.xml</testXml>
+                <suiteXmlFiles>${test.config.path}/testng_all.xml</suiteXmlFiles>
             </properties>
         </profile>
     </profiles>
