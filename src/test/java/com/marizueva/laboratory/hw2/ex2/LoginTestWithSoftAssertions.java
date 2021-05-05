@@ -1,40 +1,22 @@
 package com.marizueva.laboratory.hw2.ex2;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+import com.marizueva.laboratory.hw2.BaseTest;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-public class LoginTestWithSoftAssertions {
+public class LoginTestWithSoftAssertions extends BaseTest {
     SoftAssert softAssert;
 
-    private WebDriver driver;
-    private  final String baseUrl = "https://jdi-testing.github.io/jdi-light/index.html";
-    private final String login = "Roman";
-    private final String password = "Jdi1234";
 
-    @BeforeClass
+    @BeforeMethod
     public void beforeClass() {
         softAssert = new SoftAssert();
-
-        WebDriverManager.chromedriver().setup();
-
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--disable-notifications", "--disable-popup-blocking");
-
-        driver = new ChromeDriver(options);
-
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
     }
 
@@ -48,18 +30,15 @@ public class LoginTestWithSoftAssertions {
 
         //Perform login username: Roman pass: Jdi1234
         WebElement openLoginDropdownButton = driver.findElement(By
-                .xpath("//li[@class='dropdown uui-profile-menu']"
-                        + "//span[@class='caret'][1]"));
+                .cssSelector("a[href='#'] >.caret"));
         openLoginDropdownButton.click();
 
         WebElement loginField = driver.findElement(By
-                .xpath("//ul/li[@class='dropdown uui-profile-menu open']"
-                        + "/descendant::input[@id='name']"));
+                .id("name"));
         loginField.sendKeys(login);
 
         WebElement passwordField = driver.findElement(By
-                .xpath("//ul/li[@class='dropdown uui-profile-menu open']"
-                        + "/descendant::input[@id='password']"));
+                .id("password"));
         passwordField.sendKeys(password);
 
         WebElement enterCredentials = driver.findElement(By
@@ -71,8 +50,7 @@ public class LoginTestWithSoftAssertions {
         //Assert User name in the left-top side of screen that user is logged:ROMAN IOVLEV
         // Name is displayed and equals to expected result
         WebElement loggedUserName = driver.findElement(By
-                .xpath("//ul/li[@class='dropdown uui-profile-menu open']"
-                        + "/descendant::span[@id='user-name']"));
+                .id("user-name"));
 
         softAssert.assertEquals(loggedUserName.getText(), "ROMAN IOVLEV");
 
@@ -80,7 +58,7 @@ public class LoginTestWithSoftAssertions {
         // options. "Support, Dates, Complex Table, Simple Table, Tables With Pages,
         // Different Elements"
         WebElement headerItemService = driver.findElement(By
-                .xpath("//header//ul/li/a[@class='dropdown-toggle'][1]"));
+                .cssSelector("ul.uui-navigation.nav.navbar-nav.m-l8 a.dropdown-toggle"));
         headerItemService.click();
 
         WebElement subMenuFromHeaderSupportItem = driver.findElement(By
@@ -203,7 +181,7 @@ public class LoginTestWithSoftAssertions {
 
         // Select radio Selen
         WebElement radioSelen = driver.findElement(By
-                .xpath("//div[@class='checkbox-row']/label[@class='label-radio'][4]"));
+                .cssSelector("label:nth-child(4) > input[type=radio]"));
         radioSelen.click();
 
         // Assert that for radiobutton there is a log row and value is corresponded
