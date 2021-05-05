@@ -10,9 +10,9 @@ import java.util.concurrent.TimeUnit;
 
 public abstract class BaseTest {
     protected WebDriver driver;
-    protected final String baseUrl = "https://jdi-testing.github.io/jdi-light/index.html";
-    protected final String login = "Roman";
-    protected final String password = "Jdi1234";
+    protected static final String baseUrl = "https://jdi-testing.github.io/jdi-light/index.html";
+    protected static final String login = "Roman";
+    protected static final String password = "Jdi1234";
 
     @BeforeMethod
     public void setUp() {
