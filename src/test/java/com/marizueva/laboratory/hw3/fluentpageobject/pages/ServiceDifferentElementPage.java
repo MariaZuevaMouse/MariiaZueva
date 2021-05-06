@@ -22,9 +22,6 @@ public class ServiceDifferentElementPage extends CommonPageElements {
     @FindBy(css = ".uui-side-bar.right-fix-panel")
     WebElement rightPanel;
 
-    //@FindBy(id = "mCSB_1_container")
-    //WebElement leftPanel;
-
     @FindBy(xpath = "//label[@class='label-checkbox'][1]")
     WebElement waterCheckbox;
 
@@ -137,6 +134,10 @@ public class ServiceDifferentElementPage extends CommonPageElements {
 
     public WebElement getWindLogInFalse() {
         return windLogFalse;
+    }
+
+    public boolean isTheRightSectionDisplayed() {
+        return rightPanel.isDisplayed();
     }
 
     public enum ElementType {

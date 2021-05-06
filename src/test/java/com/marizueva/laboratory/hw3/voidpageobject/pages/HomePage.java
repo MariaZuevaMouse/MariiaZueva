@@ -7,7 +7,6 @@ import org.openqa.selenium.support.FindBy;
 
 public class HomePage extends CommonPageElements {
 
-
     @FindBy(xpath = "//*[@class='benefit-icon'][1]")
     WebElement displayedBenefitImage1;
 
@@ -51,16 +50,10 @@ public class HomePage extends CommonPageElements {
 
     public HomePage(WebDriver driver) {
         super(driver);
-        //        commonPageElements = new CommonPageElements(driver);
     }
-
-    //    public CommonPageElements getCommonPageElements() {
-    ////        return commonPageElements;
-    //    }
 
     public void openSite() {
         driver.navigate().to(siteUrl);
-
     }
 
 
@@ -69,36 +62,35 @@ public class HomePage extends CommonPageElements {
         loginField.sendKeys(userName);
         passwordField.sendKeys(password);
         enterCredentials.click();
-
     }
 
     public String getLoggedUserName() {
         return loggedUserName.getText();
     }
 
-    //    public String getHeaderItem(HeaderItems headerItem) {
-    //
-    //        switch (headerItem) {
-    //            case HOME:
-    //                return headerItemHome.getText();
-    //
-    //            case CONTACT_FORM:
-    //                return headerItemContact.getText();
-    //
-    //            case SERVICE:
-    //                return headerItemService.getText();
-    //
-    //            case METAL_AND_COLORS:
-    //                return headerItemMetalAndColor.getText();
-    //
-    //            default:
-    //                throw new NotFoundException("There is no such tab" + headerItem);
-    //
-    //        }
-    //    }
+    public String getHeaderItem(HeaderItems headerItem) {
+
+        switch (headerItem) {
+            case HOME:
+                return headerItemHome.getText();
+
+            case CONTACT_FORM:
+                return headerItemContact.getText();
+
+            case SERVICE:
+                return headerItemService.getText();
+
+            case METAL_AND_COLORS:
+                return headerItemMetalAndColor.getText();
+
+            default:
+                throw new NotFoundException("There is no such tab" + headerItem);
+
+        }
+    }
 
 
-    public boolean checkBenefitIconIsDisplayed(int index) {
+    public boolean isBenefitIconDisplayed(int index) {
         switch (index) {
             case 1:
                 return displayedBenefitImage1.isDisplayed();
@@ -137,22 +129,24 @@ public class HomePage extends CommonPageElements {
         return mainContentText;
     }
 
-    public WebElement getCentralIframe() {
-        return iframeCenter;
-    }
-
     public void goToCentralIframe() {
         driver.switchTo().frame(iframeCenter);
-
     }
 
-    public WebElement getEpamLogo() {
-        return epamLogoInIframe;
-    }
-
-    public WebElement getJdiHeader() {
-        return subHeaderJdi;
+    public boolean isJdiHeaderDisplayed() {
+        return subHeaderJdi.isDisplayed();
     }
 
 
+    public boolean isCentralIframeDisplayed() {
+        return iframeCenter.isDisplayed();
+    }
+
+    public boolean isEpamLogoDisplayed() {
+        return epamLogoInIframe.isDisplayed();
+    }
+
+    public void getBackFromIframeToMainSite() {
+        driver.switchTo().parentFrame();
+    }
 }

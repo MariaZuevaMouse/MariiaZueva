@@ -7,7 +7,11 @@ public enum HeaderItems {
     METAL_AND_COLORS("METALS & COLORS");
 
 
-    public String requestedTab;
+    private String requestedTab;
+
+    public String getRequestedTabText() {
+        return requestedTab;
+    }
 
     HeaderItems(String requestedTab) {
         this.requestedTab = requestedTab;

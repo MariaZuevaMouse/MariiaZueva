@@ -22,9 +22,6 @@ public class ServiceDifferentElementPage extends CommonPageElements {
     @FindBy(css = ".uui-side-bar.right-fix-panel")
     WebElement rightPanel;
 
-    //@FindBy(id = "mCSB_1_container")
-    //WebElement leftPanel;
-
     @FindBy(xpath = "//label[@class='label-checkbox'][1]")
     WebElement waterCheckbox;
 
@@ -68,7 +65,7 @@ public class ServiceDifferentElementPage extends CommonPageElements {
         super(driver);
     }
 
-    public void checkElementItemCount(
+    public ServiceDifferentElementPage checkElementItemCount(
             ElementType elementType, int qty, SoftAssert softAssert) {
         switch (elementType) {
             case CHECKBOXES:
@@ -83,6 +80,7 @@ public class ServiceDifferentElementPage extends CommonPageElements {
             default: throw new NotFoundException("no such element");
         }
 
+        return this;
     }
 
     public WebElement getTheRightSection() {
@@ -107,15 +105,16 @@ public class ServiceDifferentElementPage extends CommonPageElements {
 
     public void chooseRadioSelen() {
         radioSelen.click();
+
     }
 
     public WebElement getRadioSelenLog() {
         return selenLog;
     }
 
-    public void openColorDropdown() {
+    public ServiceDifferentElementPage openColorDropdown() {
         openColorDropdown.click();
-
+        return this;
     }
 
     public void clickYellowInDropdown() {
@@ -132,6 +131,10 @@ public class ServiceDifferentElementPage extends CommonPageElements {
 
     public WebElement getWindLogInFalse() {
         return windLogFalse;
+    }
+
+    public boolean isTheRightSectionDisplayed() {
+        return rightPanel.isDisplayed();
     }
 
     public enum ElementType {

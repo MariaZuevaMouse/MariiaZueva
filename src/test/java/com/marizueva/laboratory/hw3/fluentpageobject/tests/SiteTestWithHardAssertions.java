@@ -2,166 +2,101 @@ package com.marizueva.laboratory.hw3.fluentpageobject.tests;
 
 import com.marizueva.laboratory.hw3.fluentpageobject.pages.HeaderItems;
 import com.marizueva.laboratory.hw3.fluentpageobject.pages.HomePage;
-import com.marizueva.laboratory.hw3.testdata.DataProviders;
-import com.marizueva.laboratory.hw3.utils.DriverManager;
-import com.marizueva.laboratory.hw3.utils.TestDataProperties;
-import org.openqa.selenium.WebDriver;
+import com.marizueva.laboratory.hw3.testdata.UsedInTestTerms;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.Properties;
-
-public class SiteTestWithHardAssertions {
-    WebDriver driver;
-    HomePage homePage;
-    Properties testDataProps = null;
-    String homePageTitle = "Home Page";
-    String loggedUser = "ROMAN IOVLEV";
-
-
-    private String userName;
-    private String password;
-    private String title;
-    private String name;
-    private String headerItem;
-
-    @BeforeClass(alwaysRun = true)
-    public void beforeClass() {
-        testDataProps  = TestDataProperties.getTestDataProps();
-        userName = testDataProps.getProperty("username");
-        password = testDataProps.getProperty("password");
-
-    }
-
-    @BeforeMethod
-    public void setUp() {
-        driver = DriverManager.setUpDriver();
-    }
+public class SiteTestWithHardAssertions extends BaseTest {
 
     @Test
     public void testBrowserTitleForHome() {
         homePage = new HomePage(driver)
                 .openSite();
         Assert.assertEquals(driver.getTitle(), homePageTitle);
-    }
 
-    @Test
-    public void testCheckLoggedUserName() {
         String loggedUserName = new HomePage(driver)
                 .openSite()
                 .performLogin(userName, password)
                 .getLoggedUserName();
 
         Assert.assertEquals(loggedUserName, loggedUser);
-    }
 
-    @Test(dataProviderClass = DataProviders.class, dataProvider = "headerItemsEn")
-    public void testHeaderItems(HeaderItems headerItem) {
-        String headerItemActual = new HomePage(driver)
-                .openSite()
-                .performLogin(userName, password)
-                .getHeaderItem(headerItem);
 
-        Assert.assertEquals(headerItemActual, headerItem.requestedTab);
-    }
+        String headerItemHome = homePage.getHeaderItem(HeaderItems.HOME);
+        Assert.assertEquals(headerItemHome, HeaderItems.HOME.getRequestedTabText());
 
-    @Test(dataProviderClass = DataProviders.class, dataProvider = "benefitIconsTextIndex")
-    public void testCheckBenefitImages(int index) {
-        boolean result = new HomePage(driver)
-                .openSite()
-                .performLogin(userName, password)
-                .checkBenefitIconIsDisplayed(index);
+        String headerItemContactForm = homePage.getHeaderItem(HeaderItems.CONTACT_FORM);
+        Assert.assertEquals(headerItemContactForm, HeaderItems.CONTACT_FORM.getRequestedTabText());
 
-        Assert.assertTrue(result);
-    }
+        String headerItemService = homePage.getHeaderItem(HeaderItems.SERVICE);
+        Assert.assertEquals(headerItemService, HeaderItems.SERVICE.getRequestedTabText());
 
-    @Test(dataProviderClass = DataProviders.class, dataProvider = "benefitIconsTextIndex")
-    public void testCheckBenefitText(int index) {
-        boolean result = new HomePage(driver)
-                .openSite()
-                .performLogin(userName, password)
-                .checkBenefitTextIsDisplayed(index);
+        String headerItemMetalAndColors = homePage.getHeaderItem(HeaderItems.METAL_AND_COLORS);
+        Assert.assertEquals(headerItemMetalAndColors,
+                HeaderItems.METAL_AND_COLORS.getRequestedTabText());
 
-        Assert.assertTrue(result);
-    }
 
-    @Test
-    public void testMainHeader() {
-        WebElement mainHeaderEpamWishes = new HomePage(driver)
-                .openSite()
-                .performLogin(userName, password)
+        boolean benefitIcon1 = homePage.isBenefitIconDisplayed(1);
+        Assert.assertTrue(benefitIcon1);
+
+        boolean benefitIcon2 = homePage.isBenefitIconDisplayed(2);
+        Assert.assertTrue(benefitIcon2);
+
+        boolean benefitIcon3 = homePage.isBenefitIconDisplayed(3);
+        Assert.assertTrue(benefitIcon3);
+
+        boolean benefitIcon4 = homePage.isBenefitIconDisplayed(4);
+        Assert.assertTrue(benefitIcon4);
+
+
+        boolean benefitText1 = homePage.checkBenefitTextIsDisplayed(1);
+        Assert.assertTrue(benefitText1);
+
+        boolean benefitText2 = homePage.checkBenefitTextIsDisplayed(1);
+        Assert.assertTrue(benefitText2);
+
+        boolean benefitText3 = homePage.checkBenefitTextIsDisplayed(1);
+        Assert.assertTrue(benefitText3);
+
+        boolean benefitText4 = homePage.checkBenefitTextIsDisplayed(1);
+        Assert.assertTrue(benefitText4);
+
+
+        WebElement mainHeaderEpamWishes = homePage
                 .getMainHeaderEpamWishes();
         Assert.assertTrue(mainHeaderEpamWishes.isDisplayed());
-        Assert.assertEquals(mainHeaderEpamWishes.getText().substring(0, 21), //
-                "EPAM FRAMEWORK WISHES");
-    }
+        Assert.assertEquals(mainHeaderEpamWishes.getText().substring(0, 21),
+            UsedInTestTerms.homeEpamFrameworkTitle);
 
-    @Test
-    public void testMainHeaderText() {
-        WebElement mainHeaderEpamLorem = new HomePage(driver)
-                .openSite()
-                .performLogin(userName, password)
+        WebElement mainHeaderEpamLorem = homePage
                 .getMainHeaderEpamLorem();
         Assert.assertTrue(mainHeaderEpamLorem.isDisplayed());
-        Assert.assertEquals(mainHeaderEpamLorem.getText().substring(0, 11), "LOREM IPSUM");
-    }
+        Assert.assertEquals(mainHeaderEpamLorem.getText().substring(0, 11),
+                UsedInTestTerms.homeLoremTitle);
 
-    @Test
-    public void testCheckCentralIframeExisting() {
-        WebElement centralIframe = new HomePage(driver)
-                .openSite()
-                .performLogin(userName, password)
-                .getCentralIframe();
-        Assert.assertTrue(centralIframe.isDisplayed());
-    }
+        boolean isCentralIframeDisplayed = homePage
+                .isCentralIframeDisplayed();
+        Assert.assertTrue(isCentralIframeDisplayed);
 
-    @Test
-    public void testCheckEpamLogoInIframe() {
-        WebElement epamLogo = new HomePage(driver)
-                .openSite()
-                .performLogin(userName, password)
+
+        boolean isEpamLogoInFrameDisplayed = homePage
                 .goToCentralIframe()
-                .getEpamLogo();
+                .isEpamLogoDisplayed();
 
-        Assert.assertTrue(epamLogo.isDisplayed());
+        Assert.assertTrue(isEpamLogoInFrameDisplayed);
+
+
+        homePage.getBackFromIframeToMainSite();
+
+        boolean isJdiHeaderDisplayed = homePage
+                .isJdiHeaderDisplayed();
+        Assert.assertTrue(isJdiHeaderDisplayed);
+
+        boolean leftSectionDisplayed = homePage
+                .isLeftSectionDisplayed();
+
+        Assert.assertTrue(leftSectionDisplayed);
     }
 
-    @Test
-    public void testJdiGithubHeaderHasProperLink() {
-        WebElement jdiHeader = new HomePage(driver)
-                .openSite()
-                .performLogin(userName, password)
-                .getJdiHeader();
-
-        Assert.assertTrue(jdiHeader.isDisplayed());
-        // Assert.assertEquals(jdiHeader.getAttribute("href"), "https://github.com/epam/JDI");
-    }
-
-    @Test
-    public void testCheckExistingLeftSection() {
-        WebElement leftSection = new HomePage(driver)
-                .openSite()
-                .performLogin(userName, password)
-                .getLeftSection();
-
-        Assert.assertTrue(leftSection.isDisplayed());
-    }
-
-    @Test
-    public void testCheckExistingFooter() {
-        WebElement footer = new HomePage(driver)
-                .openSite()
-                .performLogin(userName, password)
-                .getFooter();
-        Assert.assertTrue(footer.isDisplayed());
-    }
-
-    @AfterMethod
-    public void tearDown() {
-        driver.quit();
-    }
 }

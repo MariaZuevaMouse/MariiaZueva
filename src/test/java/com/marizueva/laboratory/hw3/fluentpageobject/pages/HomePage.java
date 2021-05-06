@@ -7,7 +7,6 @@ import org.openqa.selenium.support.FindBy;
 
 public class HomePage extends CommonPageElements {
 
-
     @FindBy(xpath = "//*[@class='benefit-icon'][1]")
     WebElement displayedBenefitImage1;
 
@@ -51,22 +50,13 @@ public class HomePage extends CommonPageElements {
 
     public HomePage(WebDriver driver) {
         super(driver);
-        //        commonPageElements = new CommonPageElements(driver);
     }
-
-    //    public CommonPageElements getCommonPageElements() {
-    ////        return commonPageElements;
-    //    }
 
     public HomePage openSite() {
         driver.navigate().to(siteUrl);
         return this;
     }
 
-    //    public String getBrowserTitle() {
-    //
-    //        return ;
-    //    }
 
     public HomePage performLogin(String userName, String password) {
         openLoginDropdownButton.click();
@@ -75,15 +65,6 @@ public class HomePage extends CommonPageElements {
         enterCredentials.click();
         return this;
     }
-
-    //    public HomePage checkLoggedUserName(String name) {
-    //
-    //        return this;
-    //    }
-    //
-    //    public HomePage checkHeaderItem(String headerItem){
-    //        return this;
-    //    }
 
     public String getLoggedUserName() {
         return loggedUserName.getText();
@@ -111,7 +92,7 @@ public class HomePage extends CommonPageElements {
     }
 
 
-    public boolean checkBenefitIconIsDisplayed(int index) {
+    public boolean isBenefitIconDisplayed(int index) {
         switch (index) {
             case 1:
                 return displayedBenefitImage1.isDisplayed();
@@ -150,22 +131,26 @@ public class HomePage extends CommonPageElements {
         return mainContentText;
     }
 
-    public WebElement getCentralIframe() {
-        return iframeCenter;
-    }
-
     public HomePage goToCentralIframe() {
         driver.switchTo().frame(iframeCenter);
         return this;
     }
 
-    public WebElement getEpamLogo() {
-        return epamLogoInIframe;
-    }
-
-    public WebElement getJdiHeader() {
-        return subHeaderJdi;
+    public boolean isJdiHeaderDisplayed() {
+        return subHeaderJdi.isDisplayed();
     }
 
 
+    public boolean isCentralIframeDisplayed() {
+        return iframeCenter.isDisplayed();
+    }
+
+    public boolean isEpamLogoDisplayed() {
+        return epamLogoInIframe.isDisplayed();
+    }
+
+    public HomePage getBackFromIframeToMainSite() {
+        driver.switchTo().parentFrame();
+        return this;
+    }
 }
