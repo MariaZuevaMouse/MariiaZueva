@@ -120,71 +120,8 @@
             </plugin>
         </plugins>
     </build>
-    <profiles>
-        <profile>
-            <id>hw2</id>
-            <properties>
-                <suiteXmlFiles>${test.config.path}/hw2test.xml</suiteXmlFiles>
-            </properties>
-        </profile>
-    </profiles>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>3.1.2</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>com.puppycrawl.tools</groupId>
-                        <artifactId>checkstyle</artifactId>
-                        <version>8.41.1</version>
-                    </dependency>
-                </dependencies>
-                <configuration>
-                    <configLocation>
-                        <!--  pay attention to use exact url for checkstyle plugin ruleset  -->
-                        https://raw.githubusercontent.com/DmitryKhodakovsky/epam-test-auto-spring-2021/master/codestyle_checks.xml
-                    </configLocation>
-                    <includeTestSourceDirectory>true</includeTestSourceDirectory>
-                    <violationSeverity>warning</violationSeverity>
-                    <consoleOutput>true</consoleOutput>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>checkstyle</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven-compiler-plugin.version}</version>
-                <configuration>
-                    <source>${maven.compiler.source}</source>
-                    <target>${maven.compiler.target}</target>
-                    <encoding>UTF-8</encoding>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>${maven-surefire-plugin.version}</version>
-                <configuration>
-                    <suiteXmlFiles>${suiteXmlFiles}</suiteXmlFiles>
-                    <testFailureIgnore>true</testFailureIgnore>
-                    <argLine>
-                        -Dfile.encoding=UTF-8
-                    </argLine>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+
 
     <profiles>
         <profile>
@@ -207,6 +144,12 @@
             <id>all_tests</id>
             <properties>
                 <suiteXmlFiles>${test.config.path}/testng_all.xml</suiteXmlFiles>
+            </properties>
+        </profile>
+        <profile>
+            <id>hw2</id>
+            <properties>
+                <suiteXmlFiles>${test.config.path}/hw2test.xml</suiteXmlFiles>
             </properties>
         </profile>
     </profiles>
