@@ -3,7 +3,6 @@ package com.marizueva.laboratory.hw2.ex2;
 import com.marizueva.laboratory.hw2.BaseTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -61,40 +60,11 @@ public class LoginTestWithSoftAssertions extends BaseTest {
                 .cssSelector("ul.uui-navigation.nav.navbar-nav.m-l8 a.dropdown-toggle"));
         headerItemService.click();
 
-        WebElement subMenuFromHeaderSupportItem = driver.findElement(By
-                .xpath("//header//ul/li/a[@class='dropdown-toggle']"
-                        + "/following-sibling::ul[@class='dropdown-menu']/li/"
-                        + "a[text()='Support']"));
-        softAssert.assertTrue(subMenuFromHeaderSupportItem.isDisplayed());
-        WebElement subMenuFromHeaderDatesItem = driver.findElement(By
-                .xpath("//header//ul/li/a[@class='dropdown-toggle']"
-                        + "/following-sibling::ul[@class='dropdown-menu']/li/a[text()='Dates']"));
-        softAssert.assertTrue(subMenuFromHeaderDatesItem.isDisplayed());
-        WebElement subMenuFromHeaderSearchItem = driver.findElement(By
-                .xpath("//header//ul/li/a[@class='dropdown-toggle']"
-                        + "/following-sibling::ul[@class='dropdown-menu']/li/a[text()='Search']"));
-        softAssert.assertTrue(subMenuFromHeaderSearchItem.isDisplayed());
-
-        WebElement subMenuFromHeaderComplexTableItem = driver.findElement(By
-                .xpath("//header//ul/li/a[@class='dropdown-toggle']"
-                        + "/following-sibling::ul[@class='dropdown-menu']/li"
-                        + "/a[@href='complex-table.html']"));
-        softAssert.assertTrue(subMenuFromHeaderComplexTableItem.isDisplayed());
-        WebElement subMenuFromHeaderUserTableItem = driver.findElement(By
-                .xpath("//header//ul/li/a[@class='dropdown-toggle']"
-                        + "/following-sibling::ul[@class='dropdown-menu']/li"
-                        + "/a[@href='user-table.html']"));
-        softAssert.assertTrue(subMenuFromHeaderUserTableItem.isDisplayed());
-        WebElement subMenuFromHeaderTableWithPagesItem = driver.findElement(By
-                .xpath("//header//ul/li/a[@class='dropdown-toggle']"
-                        + "/following-sibling::ul[@class='dropdown-menu']/li"
-                        + "/a[@href='table-pages.html']"));
-        softAssert.assertTrue(subMenuFromHeaderTableWithPagesItem.isDisplayed());
-        WebElement subMenuFromHeaderDifferentElementsItem = driver.findElement(
-                By.xpath("//header//ul/li/a[@class='dropdown-toggle']"
-                        + "/following-sibling::ul[@class='dropdown-menu']"
-                        + "/li/a[@href='different-elements.html']"));
-        softAssert.assertTrue(subMenuFromHeaderDifferentElementsItem.isDisplayed());
+        List<WebElement> subMenuFromHeader = driver.findElements(By
+                .cssSelector("ul.uui-navigation.nav.navbar-nav.m-l8 > li.dropdown.open > ul>li"));
+        for (WebElement e : subMenuFromHeader) {
+            e.isDisplayed();
+        }
 
         // Click on Service subcategory in the left section and check that
         // drop down contains options
@@ -104,43 +74,31 @@ public class LoginTestWithSoftAssertions extends BaseTest {
                 .cssSelector("ul.sidebar-menu.left >li[index='3']"));
         leftServiceMenu.click();
 
-        WebElement subMenuFromLeftSupportItem = driver.findElement(
-                By.xpath("//div[@name='navigation-sidebar']//span[text()='Support']"));
-        softAssert.assertTrue(subMenuFromLeftSupportItem.isDisplayed());
-        WebElement subMenuFromLeftDatesItem = driver.findElement(
-                By.xpath("//div[@name='navigation-sidebar']//span[text()='Dates']"));
-        softAssert.assertTrue(subMenuFromLeftDatesItem.isDisplayed());
-        WebElement subMenuFromLeftSearchItem = driver.findElement(
-                By.xpath("//div[@name='navigation-sidebar']//span[text()='Search']"));
-        softAssert.assertTrue(subMenuFromLeftSearchItem.isDisplayed());
-        WebElement subMenuFromLeftComplexTableItem = driver.findElement(
-                By.xpath("//div[@name='navigation-sidebar']//a[@href='complex-table.html']"));
-        softAssert.assertTrue(subMenuFromLeftComplexTableItem.isDisplayed());
-        WebElement subMenuFromLeftUserTableItem = driver.findElement(
-                By.xpath("//div[@name='navigation-sidebar']//a[@href='user-table.html']"));
-        softAssert.assertTrue(subMenuFromLeftUserTableItem.isDisplayed());
-        WebElement subMenuFromLeftTableWithPagesItem = driver.findElement(
-                By.xpath("//div[@name='navigation-sidebar']"
-                        + "//a[@href='table-pages.html']"));
-        softAssert.assertTrue(subMenuFromLeftTableWithPagesItem.isDisplayed());
-        WebElement subMenuFromLeftDifferentElementsItem = driver.findElement(
-                By.xpath("//div[@name='navigation-sidebar']"
-                        + "//a[@href='different-elements.html']"));
-        softAssert.assertTrue(subMenuFromLeftDifferentElementsItem.isDisplayed());
+
+        List<WebElement> serviceSubMenuFromLeft = driver.findElements(By
+                .cssSelector(" ul > li.menu-title.active>ul.sub>li"));
+        for (WebElement e : serviceSubMenuFromLeft) {
+            softAssert.assertTrue(e.isDisplayed());
+        }
+
 
         // Open through the header menu Service -> Different Elements Page
         headerItemService.click();
+        WebElement subMenuFromHeaderDifferentElementsItem = driver.findElement(
+                By.xpath("//header//ul/li/a[@class='dropdown-toggle']"
+                        + "/following-sibling::ul[@class='dropdown-menu']"
+                        + "/li/a[@href='different-elements.html']"));
         subMenuFromHeaderDifferentElementsItem.click();
 
         //Check interface on Different elements page, it contains all needed
         // elements 4 checkboxes, 4 radios, 1 dropdown, 2 buttons
 
         List<WebElement> checkBoxes = driver.findElements(
-                By.cssSelector("input[type='checkbox'"));
+                By.cssSelector("input[type='checkbox']"));
         softAssert.assertEquals(checkBoxes.size(), 4);
 
         List<WebElement> radioButtons = driver.findElements(
-                By.cssSelector("input[type='radio'"));
+                By.cssSelector("input[type='radio']"));
         softAssert.assertEquals(radioButtons.size(), 4);
 
         List<WebElement> dropdownMenu = driver.findElements(
@@ -236,8 +194,4 @@ public class LoginTestWithSoftAssertions extends BaseTest {
 
     }
 
-    @AfterClass
-    public void afterClass() {
-        driver.quit();
-    }
 }

@@ -150,8 +150,4 @@ public class LoginTestWithHardAssertions extends BaseTest {
         assertTrue(driver.findElement(By.xpath("/html/body/footer")).isDisplayed());
     }
 
-    @AfterClass
-    public void afterClass() {
-        driver.quit();
-    }
 }
