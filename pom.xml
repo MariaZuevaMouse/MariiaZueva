@@ -16,6 +16,11 @@
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
         <suiteXmlFiles>${project.build.testOutputDirectory}/testng.xml</suiteXmlFiles>
         <test.config.path>${project.build.testOutputDirectory}</test.config.path>
+        <aspectj.version>1.9.5</aspectj.version>
+        <allure-maven.version>2.10.0</allure-maven.version>
+        <reportVersion.version>2.13.3</reportVersion.version>
+        <allure.version>2.13.2</allure.version>
+        <lombok.version>1.18.10</lombok.version>
     </properties>
 
     <dependencies>
@@ -33,6 +38,17 @@
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
             <version>4.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <version>${allure.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
         </dependency>
 
     </dependencies>
@@ -86,12 +102,32 @@
                     <suiteXmlFiles>${suiteXmlFiles}</suiteXmlFiles>
                     <testFailureIgnore>true</testFailureIgnore>
                     <argLine>
-                        -Dfile.encoding=UTF-8
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>
+    <reporting>
+        <excludeDefaults>true</excludeDefaults>
+        <plugins>
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.10.0</version>
+                <configuration>
+                    <reportVersion>${allure.version}</reportVersion>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
     <profiles>
         <profile>
             <id>hw2</id>
@@ -103,6 +139,12 @@
             <id>hw3</id>
             <properties>
                 <suiteXmlFiles>${test.config.path}/hw3test.xml</suiteXmlFiles>
+            </properties>
+        </profile>
+        <profile>
+            <id>hw4</id>
+            <properties>
+                <suiteXmlFiles>${test.config.path}/hw4test.xml</suiteXmlFiles>
             </properties>
         </profile>
     </profiles>
