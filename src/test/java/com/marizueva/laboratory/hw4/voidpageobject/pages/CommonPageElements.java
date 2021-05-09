@@ -1,5 +1,6 @@
 package com.marizueva.laboratory.hw4.voidpageobject.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -48,21 +49,25 @@ public class CommonPageElements extends BasePage {
 
     }
 
+    @Step
     public WebElement getLeftSection() {
         return leftSection;
     }
 
+    @Step
     public void clickServiceItemFromHeader() {
         headerItemService.click();
 
     }
 
+    @Step
     public ServiceDifferentElementPage goToDifferentElementPageFromHeader() {
         clickServiceItemFromHeader();
         subMenuFromHeaderDifferentElementsItem.click();
         return new ServiceDifferentElementPage(driver);
     }
 
+    @Step
     public boolean isLeftSectionDisplayed() {
         return leftSection.isDisplayed();
     }

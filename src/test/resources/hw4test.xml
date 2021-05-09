@@ -1,10 +1,14 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Calculator tests">
+<suite name="hw_4_tests_allure_jenkins">
+    <listeners>
+        <listener class-name="com.marizueva.laboratory.hw4.voidpageobject.tests.listener.Listener"></listener>
+    </listeners>
     <test name="hw3 test">
         <classes>
             <class name="com.marizueva.laboratory.hw4.voidpageobject.tests.SiteTestWithHardAssertions" />
             <class name="com.marizueva.laboratory.hw4.voidpageobject.tests.SiteTestWithSoftAssertions" />
+            <class name="com.marizueva.laboratory.hw4.voidpageobject.tests.FailedSiteTestWithHardAssertions" />
         </classes>
     </test>
 </suite>

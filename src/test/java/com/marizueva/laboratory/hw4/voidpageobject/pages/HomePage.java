@@ -66,10 +66,12 @@ public class HomePage extends CommonPageElements {
         enterCredentials.click();
     }
 
+    @Step
     public String getLoggedUserName() {
         return loggedUserName.getText();
     }
 
+    @Step
     public String getHeaderItem(HeaderItems headerItem) {
 
         switch (headerItem) {
@@ -91,7 +93,7 @@ public class HomePage extends CommonPageElements {
         }
     }
 
-
+    @Step
     public boolean isBenefitIconDisplayed(int index) {
         switch (index) {
             case 1:
@@ -107,6 +109,7 @@ public class HomePage extends CommonPageElements {
         }
     }
 
+    @Step
     public boolean checkBenefitTextIsDisplayed(int index) {
         switch (index) {
             case 1:
@@ -122,32 +125,37 @@ public class HomePage extends CommonPageElements {
         }
     }
 
-
+    @Step
     public WebElement getMainHeaderEpamWishes() {
         return mainContentHeader;
     }
 
+    @Step
     public WebElement getMainHeaderEpamLorem() {
         return mainContentText;
     }
 
+    @Step
     public void goToCentralIframe() {
         driver.switchTo().frame(iframeCenter);
     }
 
+    @Step
     public boolean isJdiHeaderDisplayed() {
         return subHeaderJdi.isDisplayed();
     }
 
-
+    @Step
     public boolean isCentralIframeDisplayed() {
         return iframeCenter.isDisplayed();
     }
 
+    @Step
     public boolean isEpamLogoDisplayed() {
         return epamLogoInIframe.isDisplayed();
     }
 
+    @Step
     public void getBackFromIframeToMainSite() {
         driver.switchTo().parentFrame();
     }

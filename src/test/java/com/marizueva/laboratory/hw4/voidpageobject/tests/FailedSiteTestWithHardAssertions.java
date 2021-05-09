@@ -1,8 +1,12 @@
 package com.marizueva.laboratory.hw4.voidpageobject.tests;
 
 import com.marizueva.laboratory.hw4.testdata.UsedInTestTerms;
+import com.marizueva.laboratory.hw4.utils.testnaming.FeaturesNaming;
+import com.marizueva.laboratory.hw4.utils.testnaming.StoriesNaming;
 import com.marizueva.laboratory.hw4.voidpageobject.pages.HeaderItems;
 import com.marizueva.laboratory.hw4.voidpageobject.pages.HomePage;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -10,6 +14,8 @@ import org.testng.annotations.Test;
 public class FailedSiteTestWithHardAssertions extends BaseTest {
 
     @Test
+    @Story(value = StoriesNaming.JDI_SITE)
+    @Feature(value = FeaturesNaming.HOME_PAGE)
     public void testBrowserTitleForHome() {
         homePage = new HomePage(driver);
         homePage.openSite();
@@ -19,7 +25,7 @@ public class FailedSiteTestWithHardAssertions extends BaseTest {
         homePage.performLogin(userName, password);
         String loggedUserName = homePage.getLoggedUserName();
 
-        Assert.assertEquals(loggedUserName, "ROMAN IOVLEVvv");
+        Assert.assertEquals(loggedUserName, loggedUserName);
 
 
         String headerItemHome = homePage.getHeaderItem(HeaderItems.HOME);
@@ -65,7 +71,7 @@ public class FailedSiteTestWithHardAssertions extends BaseTest {
         WebElement mainHeaderEpamWishes = homePage.getMainHeaderEpamWishes();
         Assert.assertTrue(mainHeaderEpamWishes.isDisplayed());
         Assert.assertEquals(mainHeaderEpamWishes.getText().substring(0, 21),
-            UsedInTestTerms.homeEpamFrameworkTitle);
+            UsedInTestTerms.homeEpamFrameworkTitle + "me");
 
         WebElement mainHeaderEpamLorem = homePage
                 .getMainHeaderEpamLorem();

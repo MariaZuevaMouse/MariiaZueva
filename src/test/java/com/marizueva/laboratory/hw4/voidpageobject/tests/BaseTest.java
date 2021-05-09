@@ -29,7 +29,7 @@ public class BaseTest {
         password = testDataProps.getProperty("password");
     }
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void tearDown() {
         driver.quit();
     }

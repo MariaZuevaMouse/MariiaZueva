@@ -1,5 +1,6 @@
 package com.marizueva.laboratory.hw4.voidpageobject.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.NotFoundException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -87,6 +88,7 @@ public class ServiceDifferentElementPage extends CommonPageElements {
         return rightPanel;
     }
 
+    @Step
     public void clickWaterCheckbox() {
         waterCheckbox.click();
     }
@@ -95,6 +97,7 @@ public class ServiceDifferentElementPage extends CommonPageElements {
         return waterLogTrue;
     }
 
+    @Step
     public void clickWindCheckbox() {
         windCheckbox.click();
     }
@@ -103,6 +106,7 @@ public class ServiceDifferentElementPage extends CommonPageElements {
         return windLogTrue;
     }
 
+    @Step
     public void chooseRadioSelen() {
         radioSelen.click();
 
@@ -112,6 +116,7 @@ public class ServiceDifferentElementPage extends CommonPageElements {
         return selenLog;
     }
 
+    @Step
     public ServiceDifferentElementPage openColorDropdown() {
         openColorDropdown.click();
         return this;

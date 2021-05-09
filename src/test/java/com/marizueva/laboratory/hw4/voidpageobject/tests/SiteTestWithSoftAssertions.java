@@ -1,8 +1,15 @@
 package com.marizueva.laboratory.hw4.voidpageobject.tests;
 
 import com.marizueva.laboratory.hw4.testdata.UsedInTestTerms;
+import com.marizueva.laboratory.hw4.utils.AttachmentsUtil;
+import com.marizueva.laboratory.hw4.utils.testnaming.FeaturesNaming;
+import com.marizueva.laboratory.hw4.utils.testnaming.StoriesNaming;
 import com.marizueva.laboratory.hw4.voidpageobject.pages.HomePage;
 import com.marizueva.laboratory.hw4.voidpageobject.pages.ServiceDifferentElementPage;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -18,6 +25,8 @@ public class SiteTestWithSoftAssertions extends BaseTest {
     }
 
     @Test
+    @Story(value = StoriesNaming.JDI_SITE)
+    @Feature(value = FeaturesNaming.DIFFERENT_ELEMENT_PAGE)
     public void testCheckBrowserTitle() {
         homePage = new HomePage(driver);
         homePage.openSite();
@@ -79,6 +88,9 @@ public class SiteTestWithSoftAssertions extends BaseTest {
         softAssert.assertTrue(windLogInFalse.isDisplayed());
         softAssert.assertEquals(windLogInFalse.getText().substring(9),
                 UsedInTestTerms.diffElWindFalseLog);
+        AttachmentsUtil.attachPngImage(((TakesScreenshot) driver)
+                        .getScreenshotAs(OutputType.BYTES),
+                "diff_logs.png", driver);
     }
 
 }
