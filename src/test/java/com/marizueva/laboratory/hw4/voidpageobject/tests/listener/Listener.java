@@ -12,13 +12,7 @@ public class Listener implements ITestListener {
     @Override
     public void onTestFailure(ITestResult result) {
         WebDriver driver = (WebDriver) result.getTestContext().getAttribute("driver");
-        //        File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        //        try (FileInputStream fis = new FileInputStream(srcFile)) {
-        //            Allure.addAttachment("Something wrong with test on this page", fis);
-        //        } catch (IOException e) {
-        //            e.printStackTrace();
-        //        }
-
+        
         AttachmentsUtil.attachPngImage(((TakesScreenshot) driver)
                         .getScreenshotAs(OutputType.BYTES),
                 "error.png", driver);
