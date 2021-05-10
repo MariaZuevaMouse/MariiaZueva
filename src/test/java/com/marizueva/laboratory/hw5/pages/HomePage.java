@@ -7,30 +7,35 @@ import org.openqa.selenium.support.FindBy;
 public class HomePage extends BasePage {
 
     @FindBy(css = "a[href='#'] >.caret")
-    protected WebElement openLoginDropdownButton;
+    private WebElement openLoginDropdownButton;
 
     @FindBy(id = "name")
-    protected WebElement loginField;
+    private WebElement loginField;
 
     @FindBy(id = "password")
-    protected WebElement passwordField;
+    private WebElement passwordField;
 
     @FindBy(xpath = "//ul/li[@class='dropdown uui-profile-menu open']"
             + "/descendant::span[text()='Enter']")
-    protected WebElement enterCredentials;
+    private WebElement enterCredentials;
 
-    @FindBy(id = "user-name")
-    WebElement loggedUserName;
+
     public HomePage(WebDriver driver) {
         super(driver);
     }
 
-    public CommonPage getCommonPageElements(){
+    public CommonPage getCommonPageElements() {
         return new CommonPage(driver);
     }
 
     public void openSite() {
         driver.navigate().to(siteUrl);
+    }
 
+    public void performLogin() {
+        openLoginDropdownButton.click();
+        loginField.sendKeys(defaultUser);
+        passwordField.sendKeys(defaultPassword);
+        enterCredentials.click();
     }
 }

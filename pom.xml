@@ -160,6 +160,12 @@
                 <suiteXmlFiles>${test.config.path}/testng_all.xml</suiteXmlFiles>
             </properties>
         </profile>
+        <profile>
+            <id>hw5_cucumber</id>
+            <properties>
+                <suiteXmlFiles>${test.config.path}/cucumber_testng.xml</suiteXmlFiles>
+            </properties>
+        </profile>
     </profiles>
 
 </project>

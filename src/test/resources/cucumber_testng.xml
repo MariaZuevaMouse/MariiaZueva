@@ -3,8 +3,7 @@
 <suite name="Cucumber tests">
     <test name="cucumber scenario test">
         <classes>
-            <class name="com.marizueva.laboratory.hw1.calculatorttests.SubtractionTests"/>
-            <class name="com.marizueva.laboratory.hw1.calculatorttests.AddTests"/>
+            <class name="com.marizueva.laboratory.hw5.RunAllCucumberTests"/>
         </classes>
     </test>
 
