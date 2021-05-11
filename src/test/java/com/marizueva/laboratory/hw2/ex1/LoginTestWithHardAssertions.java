@@ -3,7 +3,6 @@ package com.marizueva.laboratory.hw2.ex1;
 import com.marizueva.laboratory.hw2.BaseTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
 import java.util.List;

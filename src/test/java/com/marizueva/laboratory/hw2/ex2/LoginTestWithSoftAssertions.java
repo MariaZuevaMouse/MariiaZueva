@@ -116,24 +116,24 @@ public class LoginTestWithSoftAssertions extends BaseTest {
 
         // Select checkboxes Water, Wind
         WebElement waterCheckbox = driver
-                .findElement(By.xpath("//label[@class='label-checkbox'][1]"));
+                .findElement(By
+                        .cssSelector("div.checkbox-row > label.label-checkbox:nth-child(1)"));
         waterCheckbox.click();
         WebElement windCheckbox = driver
-                .findElement(By.xpath("//label[@class='label-checkbox'][3]"));
+                .findElement(By
+                        .cssSelector("div.checkbox-row > label.label-checkbox:nth-child(3)"));
         windCheckbox.click();
 
         // Assert that for each checkbox there is an individual log row
         // and value is corresponded to the status of checkbox.
         // Log rows are displayed, checkbox name and its status is corresponding to selected
         WebElement waterLogTrue = driver.findElement(By
-                .xpath("//*[contains(text(),"
-                        + "substring('01:14:22  Water: condition changed to true',11, 16))]"));
+                .cssSelector("div.info-panel-body-log li:nth-last-child(1)"));
         softAssert.assertTrue(waterLogTrue.isDisplayed());
         softAssert.assertEquals(waterLogTrue.getTagName(), "li");
 
         WebElement windLogTrue = driver.findElement(By
-                .xpath("//*[contains(text(),"
-                        + "substring('009:38:12  Wind: condition changed to true',11, 15))]"));
+                .cssSelector("div.info-panel-body-log li:nth-last-child(2)"));
         softAssert.assertTrue(windLogTrue.isDisplayed());
         softAssert.assertEquals(windLogTrue.getTagName(), "li");
 
@@ -146,8 +146,7 @@ public class LoginTestWithSoftAssertions extends BaseTest {
         // to the status of radiobutton.
         // Log row is displayed, radiobutton name and its status is corresponding to selected
         WebElement selenLog = driver.findElement(By
-                .xpath("//*[contains(text(), substring('10:40:57 metal: "
-                        + "value changed to  Selen',23,40))] "));
+                .cssSelector("div.info-panel-body-log li:nth-last-child(3)"));
         softAssert.assertTrue(selenLog.isDisplayed());
         softAssert.assertEquals(selenLog.getText().substring(22),
                 "changed to Selen");
@@ -163,34 +162,13 @@ public class LoginTestWithSoftAssertions extends BaseTest {
         // Assert that for dropdown there is a log row and value is corresponded
         // to the selected value.
         // Log row is displayed, dropdown name and selected value is corresponding to selected
-        WebElement dropdownYellowLog = driver.findElement(By.xpath(
-                "//*[contains(text(),substring('11:18:10 Colors: value"
-                        + " changed to Yellow',18, 40))]"));
+        WebElement dropdownYellowLog = driver.findElement(By
+                .cssSelector("div.info-panel-body-log li:nth-last-child(4)"));
+
         softAssert.assertTrue(dropdownYellowLog.isDisplayed());
         softAssert.assertEquals(dropdownYellowLog.getText().substring(17),
                 "value changed to Yellow");
 
-        // Unselect and assert checkboxes Water, Wind Elements are unchecked
-        waterCheckbox.click();
-        windCheckbox.click();
-
-
-        // Assert that for each checkbox there is an individual log row
-        // and value is corresponded to the status of checkbox.
-        // Log rows are displayed, checkbox name and its status is corresponding to selected
-        WebElement waterLogFalse = driver.findElement(By.xpath(
-                "//*[contains(text(),"
-                        + "substring('11:23:22  Water: condition changed to false',11, 43))]"));
-        softAssert.assertTrue(waterLogFalse.isDisplayed());
-        softAssert.assertEquals(waterLogFalse.getText().substring(9),
-                "Water: condition changed to false");
-
-        WebElement windLogFalse = driver.findElement(By.xpath(
-                "//*[contains(text(),substring('11:23:20  Wind: "
-                        + "condition changed to false',11, 42))]"));
-        softAssert.assertTrue(windLogFalse.isDisplayed());
-        softAssert.assertEquals(windLogFalse.getText().substring(9),
-                "Wind: condition changed to false");
 
     }
 
