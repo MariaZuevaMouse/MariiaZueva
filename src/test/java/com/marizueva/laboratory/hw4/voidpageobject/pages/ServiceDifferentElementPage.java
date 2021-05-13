@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ServiceDifferentElementPage extends CommonPageElements {
 
@@ -23,26 +24,14 @@ public class ServiceDifferentElementPage extends CommonPageElements {
     @FindBy(css = ".uui-side-bar.right-fix-panel")
     WebElement rightPanel;
 
-    @FindBy(xpath = "//label[@class='label-checkbox'][1]")
+    @FindBy(css = "div.checkbox-row > label.label-checkbox:nth-child(1)")
     WebElement waterCheckbox;
 
-    @FindBy(xpath = "//label[@class='label-checkbox'][3]")
+    @FindBy(css = "div.checkbox-row > label.label-checkbox:nth-child(3)")
     WebElement windCheckbox;
 
-    @FindBy(xpath = "//*[contains(text(),"
-            + "substring('01:14:22  Water: condition changed to true',11, 42))]")
-    WebElement waterLogTrue;
-
-    @FindBy(xpath = "//*[contains(text(),"
-            + "substring('009:38:12  Wind: condition changed to true',11, 15))]")
-    WebElement windLogTrue;
-
-    @FindBy(xpath = "//div[@class='checkbox-row']/label[@class='label-radio'][4]")
+    @FindBy(css = "div.checkbox-row > label.label-radio:nth-child(4)")
     WebElement radioSelen;
-
-    @FindBy(xpath = "//*[contains(text(), substring('10:40:57 metal: "
-            + "value changed to  Selen',23,40))] ")
-    WebElement selenLog;
 
     @FindBy(css = "div.colors>.uui-form-element")
     WebElement openColorDropdown;
@@ -50,17 +39,9 @@ public class ServiceDifferentElementPage extends CommonPageElements {
     @FindBy(xpath = "//div[@class='colors']/select/option[text()='Yellow']")
     WebElement dropdownYellow;
 
-    @FindBy(xpath = "//*[contains(text(),substring('11:18:10 Colors: value"
-            + " changed to Yellow',18, 40))]")
-    WebElement dropdownYellowLog;
 
-    @FindBy(xpath = "//*[contains(text(),"
-            + "substring('11:23:22  Water: condition changed to false',11, 43))]")
-    WebElement waterLogFalse;
-
-    @FindBy(xpath = "//*[contains(text(),substring('11:23:20  Wind: "
-            + "condition changed to false',11, 42))]")
-    WebElement windLogFalse;
+    @FindBy(css = "ul.logs>li")
+    private List<WebElement> allLogs;
 
     public ServiceDifferentElementPage(WebDriver driver) {
         super(driver);
@@ -93,27 +74,15 @@ public class ServiceDifferentElementPage extends CommonPageElements {
         waterCheckbox.click();
     }
 
-    public WebElement getWaterLogInTrue() {
-        return waterLogTrue;
-    }
-
     @Step
     public void clickWindCheckbox() {
         windCheckbox.click();
-    }
-
-    public WebElement getWindLogInTrue() {
-        return windLogTrue;
     }
 
     @Step
     public void chooseRadioSelen() {
         radioSelen.click();
 
-    }
-
-    public WebElement getRadioSelenLog() {
-        return selenLog;
     }
 
     @Step
@@ -126,17 +95,6 @@ public class ServiceDifferentElementPage extends CommonPageElements {
         dropdownYellow.click();
     }
 
-    public WebElement getDropdownYellowLog() {
-        return dropdownYellowLog;
-    }
-
-    public WebElement getWaterLogInFalse() {
-        return waterLogFalse;
-    }
-
-    public WebElement getWindLogInFalse() {
-        return windLogFalse;
-    }
 
     public boolean isTheRightSectionDisplayed() {
         return rightPanel.isDisplayed();
@@ -144,5 +102,14 @@ public class ServiceDifferentElementPage extends CommonPageElements {
 
     public enum ElementType {
         CHECKBOXES, RADIO_BUTTONS, DROPDOWN_MENU
+    }
+
+
+    @Step("Check log content")
+    public List<String> getAllLogsInStringFormat() {
+        return allLogs.stream()
+                .map(WebElement::getText)
+                .map(e -> e.substring(9))
+                .collect(Collectors.toList());
     }
 }

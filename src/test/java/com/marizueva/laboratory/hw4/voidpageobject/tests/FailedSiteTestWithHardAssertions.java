@@ -55,16 +55,16 @@ public class FailedSiteTestWithHardAssertions extends BaseTest {
         Assert.assertTrue(benefitIcon4);
 
 
-        boolean benefitText1 = homePage.checkBenefitTextIsDisplayed(1);
+        boolean benefitText1 = homePage.isBenefitTextDisplayed(1);
         Assert.assertTrue(benefitText1);
 
-        boolean benefitText2 = homePage.checkBenefitTextIsDisplayed(1);
+        boolean benefitText2 = homePage.isBenefitTextDisplayed(2);
         Assert.assertTrue(benefitText2);
 
-        boolean benefitText3 = homePage.checkBenefitTextIsDisplayed(1);
+        boolean benefitText3 = homePage.isBenefitTextDisplayed(3);
         Assert.assertTrue(benefitText3);
 
-        boolean benefitText4 = homePage.checkBenefitTextIsDisplayed(1);
+        boolean benefitText4 = homePage.isBenefitTextDisplayed(4);
         Assert.assertTrue(benefitText4);
 
 
