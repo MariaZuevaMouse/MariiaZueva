@@ -1,6 +1,5 @@
 package com.marizueva.laboratory.hw4.voidpageobject.tests.listener;
 
-import com.marizueva.laboratory.hw4.utils.AttachmentsUtil;
 import io.qameta.allure.Attachment;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -35,7 +34,7 @@ public class Listener implements ITestListener {
 
 
     @Attachment(type = "image/png", value = "try to use param {attName}")
-    public static byte[] attachPngImage(byte[] source, String attName, WebDriver driver) {
+    public byte[] attachPngImage(byte[] source, String attName, WebDriver driver) {
         return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
 

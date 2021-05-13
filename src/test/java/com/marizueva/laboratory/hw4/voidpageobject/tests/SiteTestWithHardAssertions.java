@@ -1,15 +1,12 @@
 package com.marizueva.laboratory.hw4.voidpageobject.tests;
 
 import com.marizueva.laboratory.hw4.testdata.UsedInTestTerms;
-import com.marizueva.laboratory.hw4.utils.AttachmentsUtil;
 import com.marizueva.laboratory.hw4.utils.testnaming.FeaturesNaming;
 import com.marizueva.laboratory.hw4.utils.testnaming.StoriesNaming;
 import com.marizueva.laboratory.hw4.voidpageobject.pages.HeaderItems;
 import com.marizueva.laboratory.hw4.voidpageobject.pages.HomePage;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
