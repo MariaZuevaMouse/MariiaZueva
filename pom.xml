@@ -16,7 +16,10 @@
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
         <suiteXmlFiles>${project.build.testOutputDirectory}/testng.xml</suiteXmlFiles>
         <test.config.path>${project.build.testOutputDirectory}</test.config.path>
-
+        <jackson.version>2.12.1</jackson.version>
+        <driver>chrome</driver>
+        <allure.version>2.13.2</allure.version>
+        <lombok.version>1.18.10</lombok.version>
     </properties>
 
     <dependencies>
@@ -61,6 +64,42 @@
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-chrome-driver</artifactId>
             <version>3.141.59</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.epam.jdi</groupId>
+            <artifactId>jdi-light-html</artifactId>
+            <version>1.3.11</version>
+        </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <version>${allure.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
         </dependency>
 
     </dependencies>
@@ -112,7 +151,7 @@
                 <version>${maven-surefire-plugin.version}</version>
                 <configuration>
                     <suiteXmlFiles>${suiteXmlFiles}</suiteXmlFiles>
-                    <testFailureIgnore>true</testFailureIgnore>
+<!--                    <testFailureIgnore>true</testFailureIgnore>-->
                     <argLine>
                         -Dfile.encoding=UTF-8
                     </argLine>
@@ -120,8 +159,6 @@
             </plugin>
         </plugins>
     </build>
-
-
 
     <profiles>
         <profile>
@@ -150,6 +187,12 @@
             <id>hw2</id>
             <properties>
                 <suiteXmlFiles>${test.config.path}/hw2test.xml</suiteXmlFiles>
+            </properties>
+        </profile>
+        <profile>
+            <id>hw6jdi</id>
+            <properties>
+                <suiteXmlFiles>${test.config.path}/hw6jdi.xml</suiteXmlFiles>
             </properties>
         </profile>
     </profiles>
