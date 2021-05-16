@@ -13,11 +13,8 @@ public class DifferentElementPage extends BasePage {
         super(driver);
     }
 
-    @FindBy(css = "div.checkbox-row > label.label-checkbox:nth-child(1)")
-    private WebElement waterCheckbox;
-
-    @FindBy(css = "div.checkbox-row > label.label-checkbox:nth-child(3)")
-    private WebElement windCheckbox;
+    @FindBy(css = "input[type='checkbox']")
+    List<WebElement> checkBoxes;
 
     @FindBy(css = "div.checkbox-row > label.label-radio:nth-child(4)")
     private WebElement radioSelen;
@@ -33,15 +30,23 @@ public class DifferentElementPage extends BasePage {
 
 
     public void clickCheckbox(String checkbox) {
+        Checkboxes checkboxEnum = null;
         switch (checkbox) {
             case "Water":
-                waterCheckbox.click();
+                checkboxEnum = Checkboxes.WATER;
                 break;
             case "Wind":
-                windCheckbox.click();
+                checkboxEnum = Checkboxes.WIND;
+                break;
+            case "Fire":
+                checkboxEnum = Checkboxes.FIRE;
+                break;
+            case "Earth":
+                checkboxEnum = Checkboxes.EARTH;
                 break;
             default: throw new NotFoundException("item " + checkbox + " not found");
         }
+        checkBoxes.get(checkboxEnum.getIndex()).click();
     }
 
     public void chooseRadioSelen() {

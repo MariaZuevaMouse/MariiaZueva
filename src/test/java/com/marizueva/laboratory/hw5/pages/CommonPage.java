@@ -24,12 +24,12 @@ public class CommonPage extends BasePage {
     }
 
     public void goToServiceSubMenuFromHeader(String category) {
-        if (category.equals("Different Elements")) {
+        if ("Different Elements".equals(category)) {
             subMenuFromHeaderDifferentElementsItem.click();
-        } else if (category.equals("User Table")) {
+        } else if ("User Table".equals(category)) {
             subMenuFromHeaderUserTableItem.click();
         } else {
-            throw new NotFoundException("no such element" + category);
+            throw new NotFoundException("no such element: " + category);
         }
 
     }

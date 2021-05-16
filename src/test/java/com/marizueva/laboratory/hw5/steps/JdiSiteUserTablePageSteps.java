@@ -6,7 +6,6 @@ import com.marizueva.laboratory.hw5.utils.UsedInTestTerms;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.messages.Messages;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
@@ -31,11 +30,11 @@ public class JdiSiteUserTablePageSteps {
 
     @Then("1 log row has 'Vip: condition changed to true' text in log section")
     public void vipConditionChangedToTrueLog() {
-        List<String> actualallLogs = userTablePage
+        List<String> actualAllLogs = userTablePage
                 .getAllLogs();
 
-        assertEquals(actualallLogs.size(), 1);
-        assertEquals(actualallLogs.get(0).substring(9), UsedInTestTerms.userPageVipLog);
+        assertEquals(actualAllLogs.size(), 1);
+        assertEquals(actualAllLogs.get(0).substring(9), UsedInTestTerms.userPageVipLog);
 
     }
 
@@ -46,37 +45,38 @@ public class JdiSiteUserTablePageSteps {
         assertTrue(userTableOpened);
     }
 
-    @Then("6 Number Type Dropdowns should be displayed on Users Table on User Table Page")
-    public void dropdownQuantityOnUserTablePage() {
+    @Then("{int} Number Type Dropdowns should be displayed on Users Table on User Table Page")
+    public void dropdownQuantityOnUserTablePage(int count) {
         List<WebElement> dropdownItemsOnPage = userTablePage
                 .getDropdownItemsOnPage();
 
-        assertEquals(dropdownItemsOnPage.size(), 6);
+        assertEquals(dropdownItemsOnPage.size(), count);
 
     }
 
-    @Then("6 Usernames should be displayed on Users Table on User Table Page")
-    public void usernameQuantityOnUserTablePage() {
+    @Then("{int} Usernames should be displayed on Users Table on User Table Page")
+    public void usernameQuantityOnUserTablePage(int count) {
         List<WebElement> allUserNames = userTablePage
                 .getAllUserNamesInTable();
 
-        assertEquals(allUserNames.size(), 6);
+        assertEquals(allUserNames.size(), count);
     }
 
-    @Then("6 Description texts under images should be displayed on Users Table on User Table Page")
-    public void descriptionQuantityOnUserTablePage() {
+    @Then("{int} Description texts under images should"
+            + " be displayed on Users Table on User Table Page")
+    public void descriptionQuantityOnUserTablePage(int count) {
         List<WebElement> allUserDescriptions = userTablePage
                 .getAllUserDescriptions();
 
-        assertEquals(allUserDescriptions.size(), 6);
+        assertEquals(allUserDescriptions.size(), count);
     }
 
-    @Then("6 checkboxes should be displayed on Users Table on User Table Page")
-    public void checkboxesQuantityOnUserTablePage() {
+    @Then("{int} checkboxes should be displayed on Users Table on User Table Page")
+    public void checkboxesQuantityOnUserTablePage(int count) {
         List<WebElement> allCheckboxes = userTablePage
                 .getAllCheckboxes();
 
-        assertEquals(allCheckboxes.size(), 6);
+        assertEquals(allCheckboxes.size(), count);
     }
 
     @Then("User table should contain following values:")
@@ -91,9 +91,9 @@ public class JdiSiteUserTablePageSteps {
             thirdDescColumn.add((tableValues.get(i).get(2)));
         }
 
-        assertEquals(firstNumberColumn, userTablePage.getAllNumbersInTableInString());
-        assertEquals(secondUserColumn, userTablePage.getAllUsersInTableInString());
-        assertEquals(thirdDescColumn, userTablePage.getAllDescriptionInTableInString());
+        assertEquals(firstNumberColumn, userTablePage.getAllNumbersInTableAsString());
+        assertEquals(secondUserColumn, userTablePage.getAllUsersInTableAsString());
+        assertEquals(thirdDescColumn, userTablePage.getAllDescriptionInTableAsString());
 
     }
 
@@ -103,6 +103,6 @@ public class JdiSiteUserTablePageSteps {
         actualDropboxValues =
                 new ArrayList<>(actualDropboxValues.subList(1, actualDropboxValues.size()));
 
-        assertEquals(actualDropboxValues, userTablePage.getAllDropdownValuesInString());
+        assertEquals(actualDropboxValues, userTablePage.getAllDropdownValuesAsString());
     }
 }

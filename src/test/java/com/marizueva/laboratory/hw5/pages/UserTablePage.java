@@ -59,22 +59,22 @@ public class UserTablePage extends BasePage {
                 .equals("https://jdi-testing.github.io/jdi-light/user-table.html");
     }
 
-    public List<String> getAllNumbersInTableInString() {
+    public List<String> getAllNumbersInTableAsString() {
         return allNumbersInTable.stream().map(WebElement::getText)
                 .collect(Collectors.toList());
     }
 
-    public List<String> getAllUsersInTableInString() {
+    public List<String> getAllUsersInTableAsString() {
         return allUsersInTable.stream().map(WebElement::getText)
                 .collect(Collectors.toList());
     }
 
-    public List<String> getAllDescriptionInTableInString() {
+    public List<String> getAllDescriptionInTableAsString() {
         return allDescriptionInTable.stream().map(WebElement::getText)
                 .collect(Collectors.toList());
     }
 
-    public List<String> getAllDropdownValuesInString() {
+    public List<String> getAllDropdownValuesAsString() {
         return allDropdownValues.stream().map(WebElement::getText)
                 .collect(Collectors.toList());
     }

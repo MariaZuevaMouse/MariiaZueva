@@ -1,6 +1,7 @@
 package com.marizueva.laboratory.hw5.steps;
 
 import com.marizueva.laboratory.hw5.context.TestContext;
+import com.marizueva.laboratory.hw5.pages.Checkboxes;
 import com.marizueva.laboratory.hw5.pages.DifferentElementPage;
 import com.marizueva.laboratory.hw5.utils.UsedInTestTerms;
 import io.cucumber.java.en.Then;
@@ -84,7 +85,7 @@ public class JdiSiteDifferentElementPageSteps {
         System.out.println(expectedLogs.toString());
         System.out.println(actualLogsInStringFormat.toString());
         assertTrue(expectedLogs.containsAll(actualLogsInStringFormat));
-        assertTrue(actualLogsInStringFormat.contains(UsedInTestTerms.diffElChoosenSelenLog));
+        assertTrue(actualLogsInStringFormat.contains(UsedInTestTerms.diffElChosenSelenLog));
     }
 
     @Then("separate log for Yellow dropdown in log section with true status")
@@ -92,8 +93,7 @@ public class JdiSiteDifferentElementPageSteps {
         List<String> expectedLogs = TestContext.getInstance().getTestObject(TestContext
                 .ALL_LOGS_FROM_DIFFERENT_ELEMENT_PAGE);
 
-        List<WebElement> actualLogs = new DifferentElementPage(TestContext.getInstance()
-                .getTestObject(TestContext.WEB_DRIVER))
+        List<WebElement> actualLogs = differentElementPage
                 .getAllLogs();
         List<String> actualLogsInStringFormat = allLogsWithoutDate(actualLogs);
 
@@ -103,8 +103,7 @@ public class JdiSiteDifferentElementPageSteps {
     }
 
     private void updateLogList() {
-        List<WebElement> allLogs = new DifferentElementPage(TestContext.getInstance()
-                .getTestObject(TestContext.WEB_DRIVER))
+        List<WebElement> allLogs = differentElementPage
                 .getAllLogs();
 
         List<String> allLogsString = allLogsWithoutDate(allLogs);

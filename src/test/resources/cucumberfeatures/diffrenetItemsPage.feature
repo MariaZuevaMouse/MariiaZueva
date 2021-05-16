@@ -9,6 +9,6 @@ Feature: Different element page tests
     And I select Selen radio
     And I select Yellow in color dropdown
     Then separate log for Water checkbox in log section with true status
-    Then separate log for Wind checkbox in log section with true status
-    Then separate log for Selen radio in log section with true status
-    Then separate log for Yellow dropdown in log section with true status
+    And separate log for Wind checkbox in log section with true status
+    And separate log for Selen radio in log section with true status
+    And separate log for Yellow dropdown in log section with true status

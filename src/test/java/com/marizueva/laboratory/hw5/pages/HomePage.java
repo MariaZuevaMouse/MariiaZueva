@@ -32,10 +32,10 @@ public class HomePage extends BasePage {
         driver.navigate().to(siteUrl);
     }
 
-    public void performLogin() {
+    public void performLogin(String user, String password) {
         openLoginDropdownButton.click();
-        loginField.sendKeys(defaultUser);
-        passwordField.sendKeys(defaultPassword);
+        loginField.sendKeys(user);
+        passwordField.sendKeys(password);
         enterCredentials.click();
     }
 }
