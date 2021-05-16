@@ -12,8 +12,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DataProviders {
-    private static final String dataFile = "src/test/resources/jdi/JDI_ex8_metalsColorsDataSet.json";
-    private static ObjectMapper mapper = new ObjectMapper();
+    private static final String dataFile
+            = "src/test/resources/jdi/JDI_ex8_metalsColorsDataSet.json";
+    private static final ObjectMapper mapper = new ObjectMapper();
     private static Map<String, MetalAndColorData> dataMap = new HashMap<>();
 
     @DataProvider(name = "metalAndColorDataSet")
@@ -26,15 +27,15 @@ public class DataProviders {
             data[i][0] = entry.getValue();
             i++;
         }
-
         return data;
     }
 
     private static void getData() {
         try {
             byte[] mapData = Files.readAllBytes(Paths.get(dataFile));
-            dataMap = mapper.readValue(mapData, new TypeReference<HashMap<String, MetalAndColorData>>() {
-            });
+            dataMap = mapper.readValue(mapData,
+                    new TypeReference<HashMap<String, MetalAndColorData>>() {
+                });
         } catch (IOException e) {
             e.printStackTrace();
         }

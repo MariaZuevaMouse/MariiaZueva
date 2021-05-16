@@ -8,7 +8,7 @@ import com.marizueva.laboratory.hw6.entities.User;
 
 public class LoginForm extends Form<User> {
     @FindBy(id = "name")
-    public TextField name;
+    public TextField login;
 
     @FindBy(id = "password")
     public TextField password;

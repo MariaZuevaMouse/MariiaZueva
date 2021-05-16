@@ -3,7 +3,6 @@ package com.marizueva.laboratory.hw6.jdisitepages;
 import com.epam.jdi.light.elements.complex.Menu;
 import com.epam.jdi.light.elements.composite.WebPage;
 import com.epam.jdi.light.elements.pageobjects.annotations.FindBy;
-import com.epam.jdi.light.ui.html.elements.common.Button;
 import com.epam.jdi.light.ui.html.elements.common.Icon;
 import com.marizueva.laboratory.hw6.entities.User;
 import com.marizueva.laboratory.hw6.forms.LoginForm;

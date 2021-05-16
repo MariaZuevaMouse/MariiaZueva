@@ -8,6 +8,7 @@ import com.epam.jdi.light.elements.pageobjects.annotations.locators.JDropdown;
 import com.epam.jdi.light.ui.html.elements.common.Button;
 import com.epam.jdi.light.ui.html.elements.complex.RadioButtons;
 import com.epam.jdi.tools.DataClass;
+import com.marizueva.laboratory.hw6.entities.MetalAndColorData;
 
 public class MetalAndColorForm extends DataClass<MetalAndColorForm> {
 
@@ -44,9 +45,20 @@ public class MetalAndColorForm extends DataClass<MetalAndColorForm> {
     @FindBy(id = "submit-button")
     public Button submitButton;
 
-    @FindBy(css = ".results>li")
-     public WebList results;
+    public void fillInWithData(MetalAndColorData data) {
+        summeryOddRadio.select(data.getSummary()[0]);
+        summeryEvenRadio.select(data.getSummary()[1]);
 
-    
+        elementsCheckList.select(data.getElements());
 
+        colorDropdown.select(data.getColor());
+        metalDropdown.select(data.getMetal());
+
+        vegetablesDropdown.expand();
+        vegetablesDropdown.select(3);
+        vegetablesDropdown.select(data.getVegetables());
+
+        submitButton.click();
+
+    }
 }

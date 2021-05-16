@@ -31,7 +31,7 @@ public class JdiSite {
         homePage.login(user);
     }
 
-    public static void logoutUser(){
+    public static void logoutUser() {
         loggedUser.click();
         logoutButton.click();
     }
