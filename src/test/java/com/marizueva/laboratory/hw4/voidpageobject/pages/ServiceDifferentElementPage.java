@@ -12,10 +12,10 @@ import java.util.stream.Collectors;
 
 public class ServiceDifferentElementPage extends CommonPageElements {
 
-    @FindBy(css = "input[type='checkbox'")
+    @FindBy(css = "input[type='checkbox']")
     List<WebElement> checkBoxes;
 
-    @FindBy(css = "input[type='radio'")
+    @FindBy(css = "input[type='radio']")
     List<WebElement> radioButtons;
 
     @FindBy(css = "div.colors")
@@ -24,11 +24,8 @@ public class ServiceDifferentElementPage extends CommonPageElements {
     @FindBy(css = ".uui-side-bar.right-fix-panel")
     WebElement rightPanel;
 
-    @FindBy(css = "div.checkbox-row > label.label-checkbox:nth-child(1)")
-    WebElement waterCheckbox;
-
-    @FindBy(css = "div.checkbox-row > label.label-checkbox:nth-child(3)")
-    WebElement windCheckbox;
+    @FindBy(css = "div.checkbox-row > label.label-checkbox")
+    List<WebElement> getCheckBoxes;
 
     @FindBy(css = "div.checkbox-row > label.label-radio:nth-child(4)")
     WebElement radioSelen;
@@ -69,14 +66,9 @@ public class ServiceDifferentElementPage extends CommonPageElements {
         return rightPanel;
     }
 
-    @Step
-    public void clickWaterCheckbox() {
-        waterCheckbox.click();
-    }
 
-    @Step
-    public void clickWindCheckbox() {
-        windCheckbox.click();
+    public void clickCheckbox(Checkboxes checkbox) {
+        checkBoxes.get(checkbox.getIndex()).click();
     }
 
     @Step
@@ -105,7 +97,7 @@ public class ServiceDifferentElementPage extends CommonPageElements {
     }
 
 
-    @Step("Check log content")
+    @Step("Get all logs from lo panel")
     public List<String> getAllLogsInStringFormat() {
         return allLogs.stream()
                 .map(WebElement::getText)

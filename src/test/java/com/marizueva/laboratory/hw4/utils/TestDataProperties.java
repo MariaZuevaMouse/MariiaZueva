@@ -1,11 +1,15 @@
 package com.marizueva.laboratory.hw4.utils;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-public class TestDataProperties {
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+public final class TestDataProperties {
     private static Properties testDataProps;
     private static String testDataPropsPath = "src/test/resources/testdata.properties";
 

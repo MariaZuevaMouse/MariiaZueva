@@ -3,6 +3,7 @@ package com.marizueva.laboratory.hw4.voidpageobject.tests;
 import com.marizueva.laboratory.hw4.testdata.UsedInTestTerms;
 import com.marizueva.laboratory.hw4.utils.testnaming.FeaturesNaming;
 import com.marizueva.laboratory.hw4.utils.testnaming.StoriesNaming;
+import com.marizueva.laboratory.hw4.voidpageobject.pages.Checkboxes;
 import com.marizueva.laboratory.hw4.voidpageobject.pages.HomePage;
 import com.marizueva.laboratory.hw4.voidpageobject.pages.ServiceDifferentElementPage;
 import io.qameta.allure.Feature;
@@ -47,12 +48,11 @@ public class SiteTestWithSoftAssertions extends BaseTest {
 
         softAssert.assertTrue(leftSection.isDisplayed());
 
-        differentElementPage.clickWaterCheckbox();
+        differentElementPage.clickCheckbox(Checkboxes.WATER);
         List<String> allLogsInStringFormat = differentElementPage.getAllLogsInStringFormat();
         softAssert.assertTrue(allLogsInStringFormat.contains(UsedInTestTerms.diffElWaterTrueLog));
 
-
-        differentElementPage.clickWindCheckbox();
+        differentElementPage.clickCheckbox(Checkboxes.WIND);
         softAssert.assertTrue(allLogsInStringFormat.contains(UsedInTestTerms.diffElWindTrueLog));
 
         differentElementPage.chooseRadioSelen();
@@ -64,10 +64,10 @@ public class SiteTestWithSoftAssertions extends BaseTest {
         softAssert.assertTrue(allLogsInStringFormat
                 .contains(UsedInTestTerms.diffElDropdownYellowLog));
 
-        differentElementPage.clickWaterCheckbox();
+        differentElementPage.clickCheckbox(Checkboxes.WATER);
         softAssert.assertTrue(allLogsInStringFormat.contains(UsedInTestTerms.diffElWaterFalseLog));
 
-        differentElementPage.clickWindCheckbox();
+        differentElementPage.clickCheckbox(Checkboxes.WIND);
         softAssert.assertTrue(allLogsInStringFormat.contains(UsedInTestTerms.diffElWindFalseLog));
 
     }

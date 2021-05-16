@@ -105,7 +105,7 @@ public class HomePage extends CommonPageElements {
         }
     }
 
-    public boolean checkBenefitTextIsDisplayed(int index) {
+    public boolean isBenefitTextDisplayed(int index) {
         switch (index) {
             case 1:
                 return benefitText1.isDisplayed();

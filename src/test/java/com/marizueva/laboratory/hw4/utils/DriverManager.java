@@ -1,13 +1,16 @@
 package com.marizueva.laboratory.hw4.utils;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.concurrent.TimeUnit;
 
-public class DriverManager {
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+public final class DriverManager {
 
     public static WebDriver setUpDriver() {
         WebDriverManager.chromedriver().setup();
