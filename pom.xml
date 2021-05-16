@@ -33,7 +33,6 @@
             </exclusions>
         </dependency>
         <dependency>
-
             <groupId>com.epam.tat.module4</groupId>
             <artifactId>Calculator</artifactId>
             <version>1.0</version>
@@ -121,8 +120,6 @@
         </plugins>
     </build>
 
-
-
     <profiles>
         <profile>
             <id>add_subtract</id>
@@ -150,6 +147,12 @@
             <id>hw2</id>
             <properties>
                 <suiteXmlFiles>${test.config.path}/hw2test.xml</suiteXmlFiles>
+            </properties>
+        </profile>
+        <profile>
+            <id>hw3</id>
+            <properties>
+                <suiteXmlFiles>${test.config.path}/hw3test.xml</suiteXmlFiles>
             </properties>
         </profile>
     </profiles>
