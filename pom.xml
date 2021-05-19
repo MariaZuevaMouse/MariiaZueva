@@ -51,7 +51,6 @@
             <version>2.2</version>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
@@ -66,6 +65,21 @@
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-chrome-driver</artifactId>
             <version>3.141.59</version>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-testng</artifactId>
+            <version>6.9.1</version>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>6.9.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
         </dependency>
         <dependency>
             <groupId>io.qameta.allure</groupId>
@@ -147,9 +161,7 @@
             </plugin>
         </plugins>
     </build>
-<!--<<<<<<< HEAD-->
 
-<!--=======-->
     <reporting>
         <excludeDefaults>true</excludeDefaults>
         <plugins>
@@ -163,7 +175,7 @@
             </plugin>
         </plugins>
     </reporting>
-<!--&gt;>>>>>> hw4-->
+
     <profiles>
         <profile>
             <id>add_subtract</id>
@@ -188,6 +200,7 @@
             </properties>
         </profile>
         <profile>
+<!--<<<<<<< HEAD-->
             <id>hw2</id>
             <properties>
                 <suiteXmlFiles>${test.config.path}/hw2test.xml</suiteXmlFiles>
@@ -203,6 +216,12 @@
             <id>hw4</id>
             <properties>
                 <suiteXmlFiles>${test.config.path}/hw4test.xml</suiteXmlFiles>
+            </properties>
+        </profile>
+        <profile>
+            <id>hw5_cucumber</id>
+            <properties>
+                <suiteXmlFiles>${test.config.path}/cucumber_testng.xml</suiteXmlFiles>
             </properties>
         </profile>
     </profiles>
