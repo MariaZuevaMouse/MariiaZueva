@@ -1,15 +1,23 @@
-package com.marizueva.laboratory.hw3.voidpageobject.tests;
+package com.marizueva.laboratory.hw4.voidpageobject.tests;
 
-import com.marizueva.laboratory.hw3.testdata.UsedInTestTerms;
-import com.marizueva.laboratory.hw3.voidpageobject.pages.HeaderItems;
-import com.marizueva.laboratory.hw3.voidpageobject.pages.HomePage;
+import com.marizueva.laboratory.hw4.testdata.UsedInTestTerms;
+import com.marizueva.laboratory.hw4.utils.testnaming.FeaturesNaming;
+import com.marizueva.laboratory.hw4.utils.testnaming.StoriesNaming;
+import com.marizueva.laboratory.hw4.voidpageobject.pages.HeaderItems;
+import com.marizueva.laboratory.hw4.voidpageobject.pages.HomePage;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class SiteTestWithHardAssertions extends BaseTest {
+import java.util.List;
+
+public class FailedSiteTestWithHardAssertions extends BaseTest {
 
     @Test
+    @Story(value = StoriesNaming.JDI_SITE)
+    @Feature(value = FeaturesNaming.HOME_PAGE)
     public void testBrowserTitleForHome() {
         homePage = new HomePage(driver);
         homePage.openSite();
@@ -19,7 +27,7 @@ public class SiteTestWithHardAssertions extends BaseTest {
         homePage.performLogin(userName, password);
         String loggedUserName = homePage.getLoggedUserName();
 
-        Assert.assertEquals(loggedUserName, loggedUser);
+        Assert.assertEquals(loggedUserName, loggedUserName);
 
 
         String headerItemHome = homePage.getHeaderItem(HeaderItems.HOME);
@@ -36,36 +44,33 @@ public class SiteTestWithHardAssertions extends BaseTest {
                 HeaderItems.METAL_AND_COLORS.getRequestedTabText());
 
 
-        boolean benefitIcon1 = homePage.isBenefitIconDisplayed(1);
-        Assert.assertTrue(benefitIcon1);
+        List<WebElement> benefitIcons = homePage.getBenefitIcons();
 
-        boolean benefitIcon2 = homePage.isBenefitIconDisplayed(2);
-        Assert.assertTrue(benefitIcon2);
+        for (WebElement e : benefitIcons) {
+            Assert.assertTrue(e.isDisplayed());
+        }
 
-        boolean benefitIcon3 = homePage.isBenefitIconDisplayed(3);
-        Assert.assertTrue(benefitIcon3);
+        String[] iconExpectedText = new String[]{"To include good practices\n"
+                + "and ideas from successful\nEPAM project",
+            "To be flexible and\ncustomizable",
+            "To be multiplatform",
+            "Already have good base\n(about 20 internal and\n"
+                        + "some external projects),\nwish to get more"};
 
-        boolean benefitIcon4 = homePage.isBenefitIconDisplayed(4);
-        Assert.assertTrue(benefitIcon4);
+        List<WebElement> benefitTexts = homePage.getBenefitTexts();
 
-
-        boolean benefitText1 = homePage.isBenefitTextDisplayed(1);
-        Assert.assertTrue(benefitText1);
-
-        boolean benefitText2 = homePage.isBenefitTextDisplayed(1);
-        Assert.assertTrue(benefitText2);
-
-        boolean benefitText3 = homePage.isBenefitTextDisplayed(1);
-        Assert.assertTrue(benefitText3);
-
-        boolean benefitText4 = homePage.isBenefitTextDisplayed(1);
-        Assert.assertTrue(benefitText4);
+        for (int i = 0; i < benefitTexts.size() - 1; i++) {
+            Assert.assertTrue(benefitTexts.get(i).isDisplayed());
+            Assert.assertEquals(benefitTexts.get(i).getText(), iconExpectedText[i]);
+        }
+        Assert.assertTrue(benefitTexts.get(3).isDisplayed());
+        Assert.assertEquals(benefitTexts.get(3).getText().substring(0, 87), iconExpectedText[3]);
 
 
         WebElement mainHeaderEpamWishes = homePage.getMainHeaderEpamWishes();
         Assert.assertTrue(mainHeaderEpamWishes.isDisplayed());
         Assert.assertEquals(mainHeaderEpamWishes.getText().substring(0, 21),
-            UsedInTestTerms.homeEpamFrameworkTitle);
+            UsedInTestTerms.homeEpamFrameworkTitle + "me");
 
         WebElement mainHeaderEpamLorem = homePage
                 .getMainHeaderEpamLorem();
