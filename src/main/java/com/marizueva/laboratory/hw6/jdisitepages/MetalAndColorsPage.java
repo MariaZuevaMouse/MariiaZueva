@@ -23,6 +23,7 @@ public class MetalAndColorsPage extends WebPage {
     }
 
     public void fillInFormWithData(MetalAndColorData data) {
-        metalAndColorForm.fillInWithData(data);
+        metalAndColorForm.fill(data);
+        metalAndColorForm.submit();
     }
 }
