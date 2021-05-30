@@ -1,0 +1,9 @@
+{
+  "data_2": {
+    "summary": [1,8],
+    "elements": ["Earth", "Wind"],
+    "color": "Green",
+    "metals": "Silver",
+    "vegetables": ["Tomato", "Vegetables"]
+  }
+}
